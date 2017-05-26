@@ -1,9 +1,9 @@
-package com.tel.inoob.montagtel;
+package com.tel.inoob.montagtel.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-import com.tel.inoob.montagtel.Tools.WebClient;
+import com.tel.inoob.montagtel.R;
 
 /**
  * This is a second screen for Ticket list.
@@ -16,8 +16,7 @@ public class TicketActivity extends AppCompatActivity {
     private void onLoad(){
         Bundle extras = getIntent().getExtras();
         text = (TextView)findViewById(R.id.text);
-        text.setText((CharSequence) extras.get("data"));
-
+        text.setText(String.valueOf(extras.get("userId")));
     }
 
     @Override
