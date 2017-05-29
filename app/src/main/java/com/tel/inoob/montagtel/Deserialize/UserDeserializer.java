@@ -20,25 +20,31 @@ public class UserDeserializer implements JsonDeserializer<User> {
 
         User user = new User();
 
-        user.setId(jsonObject.get("Id").getAsInt());
-        user.setName(jsonObject.get("Name").getAsString());
+        if(jsonObject.get("Id").isJsonPrimitive()){
+            user.setId(jsonObject.get("Id").getAsInt());
+            user.setName(jsonObject.get("Name").getAsString());
 
 
-        //if RoleId is null set -1
-        if(jsonObject.get("RoleId").isJsonNull()){
-            user.setRoleId(-1);
-        }
+            //if RoleId is null set -1
+            if(jsonObject.get("RoleId").isJsonNull()){
+                user.setRoleId(-1);
+            }
 
-        JsonArray roles = jsonObject.getAsJsonArray("Roles");
+            JsonArray roles = jsonObject.getAsJsonArray("Roles");
 
-        JsonObject temp;
+            JsonObject temp;
 
-        for (JsonElement role : roles){
-            temp = role.getAsJsonObject();
-            if (temp.get("Id").isJsonPrimitive()){
-                if (temp.get("Name").isJsonPrimitive()){
-                    user.addRole(new Role(temp.get("Id").getAsInt() , temp.get("Name").getAsString()));
+            for (JsonElement role : roles){
+                temp = role.getAsJsonObject();
+                if (temp.get("Id").isJsonPrimitive()){
+                    if (temp.get("Name").isJsonPrimitive()){
+                        user.addRole(new Role(temp.get("Id").getAsInt() , temp.get("Name").getAsString()));
+                    }
                 }
+            }
+        } else {
+            if(jsonObject.get("ErrorCode").isJsonPrimitive()){
+                user.setId(jsonObject.get("ErrorCode").getAsInt());
             }
         }
 

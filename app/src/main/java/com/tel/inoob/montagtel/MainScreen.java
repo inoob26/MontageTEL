@@ -64,7 +64,7 @@ public class MainScreen extends AppCompatActivity {
 
                 pd.cancel();
 
-                if(id != 0){
+                if(id != 1){
                     ticket.putExtra("userId",id);
                     startActivity(ticket);
                 } else {

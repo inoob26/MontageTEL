@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 import com.tel.inoob.montagtel.R;
+import com.tel.inoob.montagtel.Tools.Deserialize;
 
 /**
  * This is a second screen for Ticket list.
@@ -17,6 +18,9 @@ public class TicketActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         text = (TextView)findViewById(R.id.text);
         text.setText(String.valueOf(extras.get("userId")));
+
+        Deserialize deserialize = new Deserialize();
+        deserialize.deserializeTask((Integer) extras.get("userId"),"2017.05.25");
     }
 
     @Override
