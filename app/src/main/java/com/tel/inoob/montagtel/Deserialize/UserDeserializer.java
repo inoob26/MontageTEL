@@ -6,6 +6,7 @@ import com.tel.inoob.montagtel.Model.User;
 
 import java.lang.reflect.Type;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * {@code UserDeserializer} class deserialize User class form json.

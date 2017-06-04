@@ -19,12 +19,7 @@ import java.util.concurrent.ExecutionException;
 public class WebClient {
     private static final String TAG = WebClient.class.getSimpleName();
     private final String LINK;
-    private TextView view;
 
-    public WebClient(final String path, TextView view) {
-        this.LINK = path;
-        this.view = view;
-    }
 
     public WebClient(final String path){
         this.LINK = path;

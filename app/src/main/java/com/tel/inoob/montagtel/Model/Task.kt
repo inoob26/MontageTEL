@@ -40,4 +40,8 @@ class Task {
 
     constructor(){}
 
+    constructor(firstName : String){
+        this.firstName = firstName;
+    }
+
 }

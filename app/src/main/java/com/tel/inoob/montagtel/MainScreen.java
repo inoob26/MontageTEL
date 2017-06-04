@@ -60,12 +60,13 @@ public class MainScreen extends AppCompatActivity {
                 Intent ticket = new Intent(MainScreen.this,TicketActivity.class);
 
                 Deserialize deserialize = new Deserialize();
-                int id = deserialize.deserializeUser(login.getText().toString(), password.getText().toString());
+                int response = deserialize.deserializeLoginPasswod(login.getText().toString(), password.getText().toString());
 
                 pd.cancel();
 
-                if(id != 1){
-                    ticket.putExtra("userId",id);
+
+                if(response > 100){
+                    ticket.putExtra("userId",response);
                     startActivity(ticket);
                 } else {
                     error.setVisibility(View.VISIBLE);
