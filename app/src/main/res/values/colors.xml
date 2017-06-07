@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#00609c</color>
+    <color name="colorPrimaryDark">#0182cd</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorOpenButtons">#5ac2e5</color>
+    <color name="colorTaskGreen">#93bf20</color>
+    <color name="colorTaskOrange">#f7b035</color>
+    <color name="colorTaskRed">#ba1621</color>
+    <color name="colorTaskButtons">#93bf20</color>
+    <color name="colorTaskButtonsRed">#e10815</color>
+    <color name="colorTaskToolBar">#d8d8d8</color>
+    <color name="white">#ffffff</color>
 </resources>

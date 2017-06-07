@@ -67,7 +67,6 @@ public class Deserialize {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Task.class, new TaskDeserializer())
                 .registerTypeAdapter(TicketList.class, new TicketListDeserializer())
-                .setPrettyPrinting()
                 .create();
 
         TicketList ticketList = gson.fromJson(json, TicketList.class);

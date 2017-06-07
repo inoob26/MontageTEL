@@ -8,18 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.tel.inoob.montagtel.Activities.TicketActivity;
-import com.tel.inoob.montagtel.Deserialize.RoleDeserializer;
-import com.tel.inoob.montagtel.Deserialize.UserDeserializer;
-import com.tel.inoob.montagtel.Model.Role;
-import com.tel.inoob.montagtel.Model.User;
 import com.tel.inoob.montagtel.Tools.Deserialize;
-import com.tel.inoob.montagtel.Tools.WebClient;
-
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * This is Login Screen
@@ -36,6 +26,12 @@ public class MainScreen extends AppCompatActivity {
     private EditText login;
     private EditText password;
     private TextView error;
+
+    /**
+     * Layout.
+     */
+    private static final int LAYOUT = R.layout.activity_main_screen;
+
 
     /**
      * This method initialize properties and events.
@@ -66,6 +62,7 @@ public class MainScreen extends AppCompatActivity {
 
 
                 if(response > 100){
+                    error.setVisibility(View.INVISIBLE);
                     ticket.putExtra("userId",response);
                     startActivity(ticket);
                 } else {
@@ -78,7 +75,7 @@ public class MainScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_screen);
+        setContentView(LAYOUT);
         init();
     }
 }
