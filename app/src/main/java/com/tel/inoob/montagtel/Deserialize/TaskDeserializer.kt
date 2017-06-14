@@ -19,6 +19,7 @@ class TaskDeserializer : JsonDeserializer<Task> {
         task.firstName = json.get("FirstName").asString;
         task.secondName = json.get("SecondName").asString;
         task.middleName = json.get("MiddleName").asString;
+        task.status = json.get("Status").asInt;
         task.clientId = json.get("ClientId").asInt;
         task.flatNumber = json.get("FlatNumber").asString;
         task.objectName = json.get("ObjectName").asString;

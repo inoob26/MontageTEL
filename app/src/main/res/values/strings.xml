@@ -15,4 +15,22 @@
 
 
     <string name="date_picker">"Сегодня"</string>
+
+    <!-- Navigation View header-->
+    <string name="user">"Никита Веселов"</string>
+    <string name="userPhone">"+7(926)2422316"</string>
+    <!-- Navigation View menu-->
+    <string name="graphic">"График"</string>
+    <string name="calendar">"Календарь"</string>
+    <string name="contacts">"Контакты"</string>
+    <string name="new_account">"Приведенный абонент"</string>
+    <string name="logout">"Выход"</string>
+    <string name="title_activity_contact">ContactActivity</string>
+
+    <!-- Contacts -->
+    <string name="ContactTextLableSTP">"СТП"</string>
+    <string name="ContactTextLableSecretary">"Секретари"</string>
+    <string name="ContactTextLableAccounts">"Аккаунты"</string>
+    <string name="ContactBtnText">"Открыть"</string>
+
 </resources>

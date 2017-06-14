@@ -6,6 +6,7 @@
     <!-- <uses-permission android:name="android.permission.GET_ACCOUNTS"/> -->
     <!-- <uses-permission android:name="android.permission.READ_PROFILE"/> -->
     <!-- <uses-permission android:name="android.permission.READ_CONTACTS"/> -->
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -22,6 +23,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.TicketActivity">
+        </activity>
+        <activity
+                android:name=".Activities.ContactActivity"
+                android:label="@string/title_activity_contact"
+                android:theme="@style/AppTheme">
         </activity>
     </application>
 

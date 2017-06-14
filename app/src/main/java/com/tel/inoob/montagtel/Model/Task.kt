@@ -9,6 +9,16 @@ package com.tel.inoob.montagtel.Model
 class Task {
     var id : Int = 0;
     var clientId : Int = 0;
+
+    /**
+     * не выполнена -1
+     * выполнена - 2
+     * отказ - 101
+     * резерв - 11
+     * перенос  - 200
+     */
+
+    var status : Int = 0;
     var firstName : String = "";
     var secondName : String = "";
     var middleName : String = "";
@@ -19,6 +29,7 @@ class Task {
 
     constructor(id: Int,
                 clientId: Int,
+                status: Int,
                 firstName: String,
                 secondName: String,
                 middleName: String,
@@ -29,6 +40,7 @@ class Task {
     ) {
         this.id = id
         this.clientId = clientId
+        this.status = status
         this.firstName = firstName
         this.secondName = secondName
         this.middleName = middleName
