@@ -18,7 +18,7 @@
             android:gravity="center_vertical"
             android:background="#dedede"
             android:padding="10dp"
-            android:hint="Логин"
+            android:hint="@string/login_form_login"
             android:id="@+id/login"/>
     <EditText
             android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             android:background="#dedede"
             android:padding="10dp"
             android:layout_marginTop="5dp"
-            android:hint="Пароль"
+            android:hint="@string/login_form_password"
             android:inputType="textPassword"
             android:id="@+id/password"/>
     <Button
@@ -35,16 +35,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@color/colorTaskButtons"
-            android:text="Вход в систему"
+            android:textColor="@color/white"
+            android:text="@string/login_form_signin"
             android:id="@+id/Sign_in"/>
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textColor="#FF0000"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:gravity="center_horizontal"
-            android:text="пара логин пароль не верны"
+            android:text="@string/login_form_loginpassword_error"
             android:id="@+id/wrongData"
             android:visibility="invisible"/>
 </LinearLayout>

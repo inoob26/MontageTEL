@@ -2,12 +2,9 @@ package com.tel.inoob.montagtel.Activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.internal.NavigationMenu;
-import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,14 +13,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-import com.tel.inoob.montagtel.MainScreen;
 import com.tel.inoob.montagtel.Model.Task;
 import com.tel.inoob.montagtel.R;
 import com.tel.inoob.montagtel.Tools.Deserialize;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -50,11 +46,12 @@ public class TicketActivity extends AppCompatActivity implements NavigationView.
         Deserialize deserialize = new Deserialize();
 
         DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
-        Calendar cal = Calendar.getInstance();
+        Date today = new Date();
+
 
         listOfTask = new LinkedList<>();
         //listOfTask = deserialize.deserializeTask((Integer) extras.get("userId"),"2017.05.25");
-        listOfTask = deserialize.deserializeTask((Integer) extras.get("userId"),dateFormat.format(cal.getTime()));
+        listOfTask = deserialize.deserializeTask((Integer) extras.get("userId"),dateFormat.format(today));
 
         if(listOfTask.isEmpty()){
             listOfTask.add(new Task("Нет заявок на этот день"));

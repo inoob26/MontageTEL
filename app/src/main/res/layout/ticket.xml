@@ -10,33 +10,33 @@
             android:padding="10dp"
             android:background="@android:color/white">
         <TextView
-                android:text="Id_Task + clientID"
+                android:text="@string/card_task_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:id="@+id/task_id"/>
         <TextView
-                android:text="ФИО"
+                android:text="@string/card_clientFIO"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:layout_below="@+id/taskAddress"
                 android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
                 android:id="@+id/clientFIO"/>
         <TextView
-                android:text="+7"
+                android:text="@string/card_clientPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:layout_below="@+id/clientFIO"
                 android:layout_alignParentLeft="true" android:layout_alignParentStart="true"
                 android:id="@+id/clientPhone"/>
         <TextView
-                android:text="Address"
+                android:text="@string/card_taskAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:id="@+id/taskAddress"
                 android:layout_below="@+id/task_id" android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"/>
         <TextView
-                android:text="ServiceInfo"
+                android:text="@string/card_serviceInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/serviceInfo" android:layout_below="@+id/clientPhone"
                 android:layout_alignParentLeft="true" android:layout_alignParentStart="true"/>

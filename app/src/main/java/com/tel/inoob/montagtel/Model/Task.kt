@@ -7,8 +7,8 @@ package com.tel.inoob.montagtel.Model
  * @since 0.1
  */
 class Task {
-    var id : Int = 0;
-    var clientId : Int = 0;
+    var id : Int = 0
+    var clientId : Int = 0
 
     /**
      * не выполнена -1
@@ -17,15 +17,14 @@ class Task {
      * резерв - 11
      * перенос  - 200
      */
-
-    var status : Int = 0;
-    var firstName : String = "";
-    var secondName : String = "";
-    var middleName : String = "";
-    var serviceInfo : String = "";
-    var clientPhone : String = "";
-    var flatNumber : String = "";
-    var objectName : String = "";
+    var status : Int = 0
+    var firstName : String = ""
+    var secondName : String = ""
+    var middleName : String = ""
+    var serviceInfo : String = ""
+    var clientPhone : String = ""
+    var flatNumber : String = ""
+    var objectName : String = ""
 
     constructor(id: Int,
                 clientId: Int,
@@ -53,7 +52,7 @@ class Task {
     constructor(){}
 
     constructor(firstName : String){
-        this.firstName = firstName;
+        this.firstName = firstName
     }
 
 }
