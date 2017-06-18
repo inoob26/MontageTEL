@@ -1,7 +1,6 @@
 package com.tel.inoob.montagtel.Activities;
 
-import android.os.Build;
-import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,7 +19,6 @@ import java.util.Objects;
  */
 public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.TicketViewHolder>{
     private List<Task> listOfTask;
-
     public RVTicketAdapter(List<Task> listOfTask) {
         this.listOfTask = listOfTask;
     }
@@ -33,7 +31,7 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
         return ticketViewHolder;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    //@RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onBindViewHolder(TicketViewHolder holder, int position) {
         holder.idTask_clientId.setText(listOfTask.get(position).getId()
@@ -47,6 +45,18 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
         holder.serviceInfo.setText(
                 Objects.requireNonNull(listOfTask.get(position).getServiceInfo()
                         ,"service info need not null"));
+
+        if(listOfTask.get(position).getStatus() == 1){
+            holder.cardView.setCardBackgroundColor(ContextCompat.getColor(holder.cardView.getContext(),R.color.status_color_red));
+        } else if(listOfTask.get(position).getStatus() == 2){
+            holder.cardView.setCardBackgroundColor(ContextCompat.getColor(holder.cardView.getContext(),R.color.status_color_green));
+        } else if(listOfTask.get(position).getStatus() == 11){
+            holder.cardView.setCardBackgroundColor(ContextCompat.getColor(holder.cardView.getContext(),R.color.status_color_orange));
+        } else if(listOfTask.get(position).getStatus() == 101){
+            holder.cardView.setCardBackgroundColor(ContextCompat.getColor(holder.cardView.getContext(),R.color.status_color_red));
+        } else {
+            holder.cardView.setCardBackgroundColor(ContextCompat.getColor(holder.cardView.getContext(),R.color.white));
+        }
 
     }
 

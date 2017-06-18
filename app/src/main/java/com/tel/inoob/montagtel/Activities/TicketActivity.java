@@ -34,8 +34,8 @@ public class TicketActivity extends AppCompatActivity implements NavigationView.
      */
     private static final int LAYOUT = R.layout.activity_recycle_view;
 
-    private List<Task> listOfTask;
 
+    private List<Task> listOfTask;
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private RecyclerView recyclerView;
@@ -50,7 +50,7 @@ public class TicketActivity extends AppCompatActivity implements NavigationView.
 
 
         listOfTask = new LinkedList<>();
-        //listOfTask = deserialize.deserializeTask((Integer) extras.get("userId"),"2017.05.25");
+        //listOfTask = deserialize.deserializeTask((Integer) extras.get("userId"),"2017.06.13");
         listOfTask = deserialize.deserializeTask((Integer) extras.get("userId"),dateFormat.format(today));
 
         if(listOfTask.isEmpty()){

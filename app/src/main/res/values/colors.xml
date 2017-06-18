@@ -11,4 +11,10 @@
     <color name="colorTaskButtonsRed">#e10815</color>
     <color name="colorTaskToolBar">#d8d8d8</color>
     <color name="white">#ffffff</color>
+    <color name="color_task_list_separator_line">#d6d7d9</color>
+
+    <!-- Status color -->
+    <color name="status_color_red">#a21c27</color>
+    <color name="status_color_green">#a0be38</color>
+    <color name="status_color_orange">#e5af42</color>
 </resources>

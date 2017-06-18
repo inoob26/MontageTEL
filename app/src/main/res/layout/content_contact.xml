@@ -34,7 +34,10 @@
                 android:id="@+id/stp_btn"
                 android:background="@color/colorOpenButtons"
                 android:textColor="@color/white"
-                android:layout_gravity="right" android:layout_marginBottom="5dp" android:layout_height="30dp"/>
+                android:layout_gravity="right"
+                android:layout_marginBottom="5dp"
+                android:layout_height="30dp"/>
+
         <TextView
                 android:text="@string/ContactTextLableSecretary"
                 android:layout_width="wrap_content"

@@ -11,10 +11,10 @@ class Task {
     var clientId : Int = 0
 
     /**
-     * не выполнена -1
-     * выполнена - 2
-     * отказ - 101
-     * резерв - 11
+     * не выполнена - 1 - red color
+     * выполнена - 2 - green color
+     * отказ - 101 - red color
+     * резерв - 11 - orange
      * перенос  - 200
      */
     var status : Int = 0
