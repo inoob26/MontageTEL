@@ -15,6 +15,24 @@
     <string name="card_clientPhone">"+7"</string>
     <string name="card_taskAddress">"Address"</string>
     <string name="card_serviceInfo">"ServiceInfo"</string>
+    <!-- Detail Ticket -->
+    <string name="task_detail_task">"Задачи"</string>
+    <string name="task_detail_service_task">"Услуги и задачи"</string>
+    <string name="task_detail_format_add">"Формируются и добавляются"</string>
+    <string name="task_detail_only_manager">"Только менеджером"</string>
+    <string name="task_detail_from_craizy">"Из крэйзи хауса"</string>
+    <string name="task_detail_exclude_task">"Кроме задач"</string>
+    <string name="task_detail_additional_service">"Доп услуги и работы"</string>
+    <string name="task_detail_material">"Расходные материалы"</string>
+    <string name="task_detail_pay">"Оплата"</string>
+    <string name="task_detail_pay_for_additional_service">"За доп услуги и работы: "</string>
+    <string name="task_detail_sum">"0 руб"</string>
+    <string name="task_detail_pay_for_device">"За оборудование: "</string>
+    <string name="task_detail_pay_for_month">"Абонентская плата: "</string>
+    <string name="task_detail_month_sum">"0 руб/мес"</string>
+    <string name="task_detail_pay_total">"Всего:"</string>
+    <string name="task_detail_pay_method">"Оплата наличными:"</string>
+    <string name="task_detail_finish">"Завершить"</string>
 
     <!-- Navigation View header-->
     <string name="user">"Никита Веселов"</string>

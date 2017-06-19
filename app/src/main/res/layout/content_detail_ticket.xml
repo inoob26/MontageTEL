@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView android:layout_width="match_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_marginTop="50dp"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:layout_height="match_parent">
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+        <TextView
+                android:text="@string/card_taskAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ticket_detail_task_address"
+                android:paddingLeft="16dp" android:layout_marginTop="16dp" app:layout_constraintTop_toTopOf="parent"
+                tools:layout_constraintLeft_creator="1" app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="16dp" android:layout_marginLeft="16dp" android:layout_marginEnd="16dp"
+                app:layout_constraintRight_toRightOf="parent" android:layout_marginRight="16dp"
+                android:textAlignment="textStart"/>
+        <TextView
+                android:text="@string/card_clientFIO"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ticket_detail_client_fio" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/ticket_detail_task_address" android:paddingLeft="16dp"
+                tools:layout_constraintLeft_creator="1" app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginStart="16dp" android:layout_marginLeft="16dp"/>
+        <TextView
+                android:text="@string/card_clientPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ticket_detail_client_phone"
+                android:onClick="onClick"
+                android:clickable="true"
+                app:layout_constraintTop_toBottomOf="@+id/ticket_detail_client_fio"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="16dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="16dp"/>
+        <View android:layout_width="wrap_content"
+              android:layout_height="1dp"
+              android:background="@color/color_task_list_separator_line"
+              app:layout_constraintTop_toBottomOf="@+id/ticket_detail_client_phone"
+              android:layout_marginTop="8dp" android:id="@+id/view" tools:layout_constraintLeft_creator="1"
+              app:layout_constraintLeft_toLeftOf="parent"/>
+        <TextView
+                android:text="@string/card_serviceInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ticket_detail_service_info" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/view" android:layout_marginStart="16dp"
+                app:layout_constraintLeft_toLeftOf="parent" android:layout_marginLeft="16dp"/>
+        <View android:layout_width="wrap_content"
+              android:background="@color/color_task_list_separator_line"
+              app:layout_constraintTop_toBottomOf="@+id/ticket_detail_service_info"
+              android:layout_marginTop="8dp" android:layout_height="1dp" android:id="@+id/view2"
+              tools:layout_constraintLeft_creator="1" app:layout_constraintLeft_toLeftOf="parent"/>
+        <TextView
+                android:text="@string/task_detail_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_task" android:textAlignment="center"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:layout_constraintTop_creator="1" tools:layout_constraintRight_creator="1"
+                android:layout_marginTop="14dp" app:layout_constraintTop_toBottomOf="@+id/view2"
+                tools:layout_constraintLeft_creator="1"/>
+        <TextView
+                android:text="@string/task_detail_service_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_lbl_service_and_task" android:layout_marginStart="16dp"
+                app:layout_constraintLeft_toLeftOf="parent" android:layout_marginLeft="16dp"
+                tools:layout_constraintTop_creator="1" android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_task"/>
+        <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_switch_service_and_task" android:layout_marginEnd="16dp"
+                app:layout_constraintRight_toRightOf="parent" android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/task_detail_task"/>
+        <TextView
+                android:text="@string/task_detail_format_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_lbl_format_and_add" android:layout_marginStart="16dp" app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="16dp" android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_lbl_service_and_task"/>
+        <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_switch_format_add" android:layout_marginEnd="16dp"
+                app:layout_constraintRight_toRightOf="parent" android:layout_marginRight="16dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_switch_service_and_task"/>
+        <TextView
+                android:text="@string/task_detail_only_manager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_lbl_manager" android:layout_marginStart="16dp" app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="16dp" android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_lbl_format_and_add"/>
+        <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_switch_manager"
+                android:textAlignment="textEnd"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintRight_toRightOf="parent" android:layout_marginRight="16dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_switch_format_add"/>
+        <TextView
+                android:text="@string/task_detail_from_craizy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_lbl_craizy" android:layout_marginStart="16dp"
+                app:layout_constraintLeft_toLeftOf="parent" android:layout_marginLeft="16dp" android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_lbl_manager"/>
+        <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_switch_craizy" android:layout_marginEnd="16dp" app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="16dp" app:layout_constraintTop_toBottomOf="@+id/task_detail_switch_manager"
+                android:layout_marginTop="10dp"/>
+        <TextView
+                android:text="@string/task_detail_exclude_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_lbl_exclude" android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_lbl_craizy" android:layout_marginStart="16dp"
+                app:layout_constraintLeft_toLeftOf="parent" android:layout_marginLeft="16dp"/>
+        <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_switch_exclude_task"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintRight_toRightOf="parent" android:layout_marginRight="16dp"
+                android:layout_marginTop="10dp" app:layout_constraintTop_toBottomOf="@+id/task_detail_switch_craizy"/>
+        <TextView
+                android:text="@string/task_detail_additional_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_lbl_additional" android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_lbl_exclude" android:layout_marginStart="16dp"
+                app:layout_constraintLeft_toLeftOf="parent" android:layout_marginLeft="16dp"/>
+        <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_switch_addtional" android:layout_marginEnd="16dp" app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="16dp" android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_switch_exclude_task"/>
+        <TextView
+                android:text="@string/task_detail_material"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView13" android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_lbl_additional" android:layout_marginStart="16dp"
+                app:layout_constraintLeft_toLeftOf="parent" android:layout_marginLeft="16dp"/>
+        <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_switch_material" android:layout_marginEnd="16dp"
+                app:layout_constraintRight_toRightOf="parent" android:layout_marginRight="16dp"
+                android:layout_marginTop="10dp" app:layout_constraintTop_toBottomOf="@+id/task_detail_switch_addtional"/>
+        <View android:layout_width="wrap_content"
+              android:background="@color/color_task_list_separator_line"
+              app:layout_constraintTop_toBottomOf="@+id/textView13"
+              tools:layout_editor_absoluteX="0dp" android:layout_marginTop="10dp"
+              android:id="@+id/view4" android:layout_height="1dp"/>
+        <TextView
+                android:text="@string/task_detail_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_lbl_pay" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/view4" android:layout_marginEnd="16dp"
+                app:layout_constraintRight_toRightOf="parent" android:layout_marginRight="16dp"
+                android:layout_marginStart="16dp" app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="16dp" android:textAlignment="center"/>
+        <TextView
+                android:text="@string/task_detail_pay_for_additional_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_lbl_pay_for_additional_service" android:layout_marginStart="16dp" app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="16dp" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_lbl_pay"/>
+        <TextView
+                android:text="@string/task_detail_sum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_lbl_additional_sum" android:layout_marginEnd="16dp" app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="16dp"
+                android:textAlignment="textEnd" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_lbl_pay"/>
+        <TextView
+                android:text="@string/task_detail_pay_for_device"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_lbl_pay_for_device" android:layout_marginStart="16dp" app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="16dp" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_lbl_pay_for_additional_service"/>
+        <TextView
+                android:text="@string/task_detail_sum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_lbl_for_device_sum" android:layout_marginEnd="16dp" app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="16dp" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_lbl_additional_sum"/>
+        <TextView
+                android:text="@string/task_detail_pay_for_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_lbl_pay_month"
+                android:layout_marginStart="16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="16dp" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_lbl_pay_for_device"/>
+        <TextView
+                android:text="@string/task_detail_month_sum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_lbl_pay_month_sum" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_lbl_for_device_sum" android:layout_marginEnd="16dp"
+                app:layout_constraintRight_toRightOf="parent" android:layout_marginRight="16dp"/>
+        <TextView
+                android:text="@string/task_detail_pay_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_lbl_pay_total" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_lbl_pay_month" android:layout_marginStart="16dp"
+                app:layout_constraintLeft_toLeftOf="parent" android:layout_marginLeft="16dp"/>
+        <TextView
+                android:text="@string/task_detail_sum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_lbl_pay_total_sum" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_lbl_pay_month_sum" android:layout_marginEnd="16dp"
+                app:layout_constraintRight_toRightOf="parent" android:layout_marginRight="16dp"/>
+        <TextView
+                android:text="@string/task_detail_pay_method"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_lbl_pay_method" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_lbl_pay_total" android:layout_marginStart="16dp"
+                app:layout_constraintLeft_toLeftOf="parent" android:layout_marginLeft="16dp"/>
+        <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_detail_checkBox_pay_method"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="16dp" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_lbl_pay_total_sum"/>
+        <Button
+                android:text="@string/task_detail_finish"
+                android:background="@color/colorTaskGreen"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:id="@+id/task_detail_submit"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_checkBox_pay_method"
+                android:textAlignment="center" android:layout_marginStart="16dp"
+                app:layout_constraintLeft_toLeftOf="parent" android:layout_marginLeft="16dp"
+                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp"/>
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

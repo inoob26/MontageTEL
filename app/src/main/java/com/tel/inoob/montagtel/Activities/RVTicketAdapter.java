@@ -1,5 +1,6 @@
 package com.tel.inoob.montagtel.Activities;
 
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -46,6 +47,9 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
                 Objects.requireNonNull(listOfTask.get(position).getServiceInfo()
                         ,"service info need not null"));
 
+        holder.task_id = listOfTask.get(position).getId();
+        holder.client_id = listOfTask.get(position).getClientId();
+
         if(listOfTask.get(position).getStatus() == 1){
             holder.cardView.setCardBackgroundColor(ContextCompat.getColor(holder.cardView.getContext(),R.color.status_color_red));
         } else if(listOfTask.get(position).getStatus() == 2){
@@ -72,6 +76,8 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
         TextView clientPhone;
         TextView taskAddress;
         TextView serviceInfo;
+        int task_id;
+        int client_id;
 
         public TicketViewHolder(View itemView) {
             super(itemView);
@@ -81,6 +87,25 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
             clientPhone = (TextView) itemView.findViewById(R.id.clientPhone);
             taskAddress = (TextView) itemView.findViewById(R.id.taskAddress);
             serviceInfo = (TextView) itemView.findViewById(R.id.serviceInfo);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+
+                    Intent detail_ticket = new Intent(v.getContext(),DetailTicketActivity.class);
+
+
+                    detail_ticket.putExtra("clientFio",clientFio.getText());
+                    detail_ticket.putExtra("clientPhone",clientPhone.getText());
+                    detail_ticket.putExtra("taskAddress",taskAddress.getText());
+                    detail_ticket.putExtra("serviceInfo",serviceInfo.getText());
+                    detail_ticket.putExtra("task_id",task_id);
+                    detail_ticket.putExtra("client_id",client_id);
+
+                    v.getContext().startActivity(detail_ticket);
+                }
+            });
         }
     }
 }

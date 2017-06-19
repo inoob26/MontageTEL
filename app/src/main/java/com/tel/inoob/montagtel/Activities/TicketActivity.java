@@ -50,8 +50,8 @@ public class TicketActivity extends AppCompatActivity implements NavigationView.
 
 
         listOfTask = new LinkedList<>();
-        //listOfTask = deserialize.deserializeTask((Integer) extras.get("userId"),"2017.06.13");
-        listOfTask = deserialize.deserializeTask((Integer) extras.get("userId"),dateFormat.format(today));
+        listOfTask = deserialize.deserializeTask((Integer) extras.get("userId"),"2017.06.13");
+        //listOfTask = deserialize.deserializeTask((Integer) extras.get("userId"),dateFormat.format(today));
 
         if(listOfTask.isEmpty()){
             listOfTask.add(new Task("Нет заявок на этот день"));
