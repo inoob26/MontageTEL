@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import com.tel.inoob.montagtel.R;
+import com.tel.inoob.montagtel.Tools.Deserialize;
 
 public class DetailTicketActivity extends AppCompatActivity {
     /**
@@ -38,6 +39,13 @@ public class DetailTicketActivity extends AppCompatActivity {
         serviceInfo.setText((String)extras.get("serviceInfo"));
         task_id.setText("№" + extras.get("task_id").toString());
         client_id.setText(extras.get("client_id").toString());
+
+        getInformation((int) extras.get("task_id"));
+    }
+
+    private void getInformation(final int id){
+        Deserialize deserialize = new Deserialize();
+        deserialize.deserializeTaskService(id);
     }
 
     @Override

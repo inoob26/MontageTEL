@@ -1,5 +1,7 @@
 package com.tel.inoob.montagtel.Model
 
+import java.util.Date
+
 /**
  * {@code Task} keep information about task.
  *
@@ -25,6 +27,7 @@ class Task {
     var clientPhone : String = ""
     var flatNumber : String = ""
     var objectName : String = ""
+    var startDateTime : String = ""
 
     constructor(id: Int,
                 clientId: Int,
@@ -35,7 +38,8 @@ class Task {
                 serviceInfo: String,
                 clientPhone: String,
                 flatNumber: String,
-                objectName: String
+                objectName: String,
+                startDateTime: String
     ) {
         this.id = id
         this.clientId = clientId
@@ -47,6 +51,7 @@ class Task {
         this.clientPhone = clientPhone
         this.flatNumber = flatNumber
         this.objectName = objectName
+        this.startDateTime = startDateTime
     }
 
     constructor(){}

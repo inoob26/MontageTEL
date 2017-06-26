@@ -25,7 +25,6 @@ public class UserDeserializer implements JsonDeserializer<User> {
             user.setId(jsonObject.get("Id").getAsInt());
             user.setName(jsonObject.get("Name").getAsString());
 
-
             //if RoleId is null set -1
             if(jsonObject.get("RoleId").isJsonNull()){
                 user.setRoleId(-1);

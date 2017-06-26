@@ -10,7 +10,9 @@
 
     <string name="date_picker">"Сегодня"</string>
     <!-- CardView Ticket -->
-    <string name="card_task_id">"Id_Task + clientID"</string>
+    <string name="card_task_id">"№25134"</string>
+    <string name="card_client_id">"ID 41886"</string>
+    <string name="card_task_start_id">"12:00"</string>
     <string name="card_clientFIO">"ФИО"</string>
     <string name="card_clientPhone">"+7"</string>
     <string name="card_taskAddress">"Address"</string>

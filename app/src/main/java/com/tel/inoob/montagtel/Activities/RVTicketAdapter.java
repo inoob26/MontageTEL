@@ -35,8 +35,11 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
     //@RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onBindViewHolder(TicketViewHolder holder, int position) {
-        holder.idTask_clientId.setText(listOfTask.get(position).getId()
-                + " "+ listOfTask.get(position).getClientId());
+        holder.idTask.setText("№" + listOfTask.get(position).getId());
+
+        holder.clientId.setText("ID " + listOfTask.get(position).getClientId());
+        holder.taskStart.setText(listOfTask.get(position).getStartDateTime());
+
         holder.taskAddress.setText(listOfTask.get(position).getObjectName()
                 + " кв." + listOfTask.get(position).getFlatNumber());
         holder.clientPhone.setText(listOfTask.get(position).getClientPhone());
@@ -50,6 +53,7 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
         holder.task_id = listOfTask.get(position).getId();
         holder.client_id = listOfTask.get(position).getClientId();
 
+        //set color for task
         if(listOfTask.get(position).getStatus() == 1){
             holder.cardView.setCardBackgroundColor(ContextCompat.getColor(holder.cardView.getContext(),R.color.status_color_red));
         } else if(listOfTask.get(position).getStatus() == 2){
@@ -71,28 +75,33 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
 
     public static class TicketViewHolder extends RecyclerView.ViewHolder{
         CardView cardView;
-        TextView idTask_clientId;
+        TextView idTask;
+        TextView clientId;
         TextView clientFio;
         TextView clientPhone;
         TextView taskAddress;
         TextView serviceInfo;
+        TextView taskStart;
         int task_id;
         int client_id;
 
         public TicketViewHolder(View itemView) {
             super(itemView);
             cardView =  (CardView) itemView.findViewById(R.id.cardViewTicket);
-            idTask_clientId = (TextView) itemView.findViewById(R.id.task_id);
+            idTask = (TextView) itemView.findViewById(R.id.task_id);
+            clientId = (TextView) itemView.findViewById(R.id.client_id);
             clientFio = (TextView) itemView.findViewById(R.id.clientFIO);
             clientPhone = (TextView) itemView.findViewById(R.id.clientPhone);
             taskAddress = (TextView) itemView.findViewById(R.id.taskAddress);
             serviceInfo = (TextView) itemView.findViewById(R.id.serviceInfo);
+            taskStart = (TextView) itemView.findViewById(R.id.task_start);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-
+                    System.out.println("CLICK: " + position);
                     Intent detail_ticket = new Intent(v.getContext(),DetailTicketActivity.class);
 
 

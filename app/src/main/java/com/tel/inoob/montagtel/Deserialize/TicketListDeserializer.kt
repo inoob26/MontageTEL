@@ -4,6 +4,7 @@ import com.google.gson.*
 import com.tel.inoob.montagtel.Model.Task
 import com.tel.inoob.montagtel.Model.TicketList
 import java.lang.reflect.Type
+import java.text.SimpleDateFormat
 
 /**
  * {@code TicketListDeserializer} class deserialize TicketList form json.
@@ -15,8 +16,13 @@ class TicketListDeserializer : JsonDeserializer<TicketList> {
     override fun deserialize(json: JsonElement, typeOfT: Type?, context: JsonDeserializationContext?): TicketList {
         val array : JsonArray = json.asJsonArray
 
+        //for formating date from yyyy.mm.dd HH:mm to HH:mm
+        val sdf1 = SimpleDateFormat("yyyy.mm.dd HH:mm")
+        val sdf2 = SimpleDateFormat("HH:mm")
+
         var ticketList : TicketList = TicketList()
         var jsonObject : JsonObject
+
         for (element : JsonElement in array) {
             jsonObject = element.asJsonObject
             //Reserve status
@@ -31,7 +37,9 @@ class TicketListDeserializer : JsonDeserializer<TicketList> {
                         jsonObject.get("ServiceInfo").asString,
                         "ClientPhone",
                         "FlatNumber",
-                        jsonObject.get("ObjectName").asString))
+                        jsonObject.get("ObjectName").asString,
+                        sdf2.format(sdf1.parse(jsonObject.get("StartDateTime").asString))
+                ))
             } else {
                 ticketList.addTask(Task(
                         jsonObject.get("Id").asInt,
@@ -43,19 +51,12 @@ class TicketListDeserializer : JsonDeserializer<TicketList> {
                         jsonObject.get("ServiceInfo").asString,
                         jsonObject.get("ClientPhone").asString,
                         jsonObject.get("FlatNumber").asString,
-                        jsonObject.get("ObjectName").asString))
+                        jsonObject.get("ObjectName").asString,
+                        sdf2.format(sdf1.parse(jsonObject.get("StartDateTime").asString))
+                ))
             }
         }
 
         return ticketList
-    }
-
-    private fun checkElement(element: JsonElement,message: String) : Boolean {
-        if( element == null) {
-            println(message)
-            return true
-        } else {
-            return false
-        }
     }
 }

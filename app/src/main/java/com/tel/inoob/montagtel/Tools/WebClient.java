@@ -39,6 +39,8 @@ public class WebClient {
             Log.e(TAG,"InterruptedException " + e.getMessage());
         } catch (ExecutionException e) {
             Log.e(TAG,"ExecutionException " + e.getMessage());
+        } catch (NullPointerException e) {
+            Log.e(TAG,"WebClint getJSON method NullPointerException " + e.getMessage());
         }
         return rs;
     }

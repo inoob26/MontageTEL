@@ -3,6 +3,9 @@ package com.tel.inoob.montagtel.Deserialize
 import com.google.gson.*
 import com.tel.inoob.montagtel.Model.Task
 import java.lang.reflect.Type
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * {@code TaskDeserializer} class deserialize Task class form json.
@@ -45,6 +48,21 @@ class TaskDeserializer : JsonDeserializer<Task> {
         if(!checkElement(jsonObj.get("ServiceInfo"),"Task ServiceInfo is null")){
             task.serviceInfo = jsonObj.get("ServiceInfo").asString
         }
+
+        //val getFormatFromServer = "yyyy.mm.dd HH:mm"
+        //val timeFormat = "HH:mm"
+
+        val sdf1 = SimpleDateFormat("yyyy.mm.dd HH:mm")
+        val sdf2 = SimpleDateFormat("HH:mm")
+
+        task.startDateTime = sdf2.format(sdf1.parse(jsonObj.get("StartDateTime").asString))
+
+        /*
+
+        val dateFormat : DateFormat = SimpleDateFormat("HH:mm")
+        val time: String = jsonObj.get("StartDateTime").asString
+        task.startDateTime = dateFormat.parse(time).toString()
+        */
 
         return task
     }

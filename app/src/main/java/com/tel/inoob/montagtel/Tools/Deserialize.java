@@ -17,10 +17,16 @@ import java.util.List;
  */
 public class Deserialize {
 
+    /**
+     * The Constant PATH's.
+     */
+    private final static String D_LOGIN_PASSWORD_PATH = "http://10.192.25.4:9190/mobile/login?login=";
+    public final static String D_TASK_PATH = "http://10.192.25.4:9190/mobile/task?id=";
+    private final static String D_TASK_SERVICE_PATH = "http://10.192.25.4:9190/mobile/ServiceByTask?id=";
+
     public int deserializeLoginPasswod(final String login, final  String password) {
-        WebClient webClient = new WebClient("http://10.192.25.4:9190/mobile/login?login="
+        String json = getJson(D_LOGIN_PASSWORD_PATH
                 + login + "&password=" + password);
-        String json = webClient.getJSON();
 
         int result = 0;
 
@@ -34,7 +40,13 @@ public class Deserialize {
         }
     }
 
-    private Error deserializeError(final String json){
+    /**
+     * Deserialize Error Object.
+     *
+     * @param json path.
+     * @return error object.
+     */
+    public Error deserializeError(final String json){
         Error error = new Error();
 
         Gson gson = new GsonBuilder()
@@ -46,6 +58,12 @@ public class Deserialize {
         return error;
     }
 
+    /**
+     * Deserialize User object from webService.
+     *
+     * @param json path.
+     * @return user id.
+     */
     private int deserializeUser(final String json) {
 
         Gson gson = new GsonBuilder()
@@ -58,22 +76,47 @@ public class Deserialize {
         return user.getId();
     }
 
-    //was void
-    public List<Task> deserializeTask(final int idMontag, final String date) {
-
-
-        WebClient webClient = new WebClient("http://10.192.25.4:9190/mobile/task?id="
-                + idMontag + "&date=" + date );
-        String json = webClient.getJSON();
+    /**
+     * Deserialize List of Task from webService.
+     *
+     * @param user_id user id.
+     * @param date date and time.
+     * @return List of Task
+     */
+    public List<Task> deserializeTask(final int user_id, final String date) {
 
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Task.class, new TaskDeserializer())
                 .registerTypeAdapter(TicketList.class, new TicketListDeserializer())
                 .create();
 
-        TicketList ticketList = gson.fromJson(json, TicketList.class);
-        List<Task> list = ticketList.getTaskList();
+        TicketList ticketList = gson.fromJson(getJson(D_TASK_PATH
+                + user_id + "&date=" + date), TicketList.class);
 
-        return list;
+        return ticketList.getTaskList();
+    }
+
+    /**
+     * Deserialize list of TaskService from webService.
+     *
+     * @param task_id task_id.
+     * @return list of taskService.
+     */
+    public  List<TaskService> deserializeTaskService(final int task_id){
+
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(TaskService.class, new TaskServiceDeserializer())
+                .registerTypeAdapter(TaskServiceList.class, new TaskServiceListDeserialize())
+                .create();
+
+        TaskServiceList taskServiceList = gson.fromJson(getJson(D_TASK_SERVICE_PATH + task_id), TaskServiceList.class);
+
+        return taskServiceList.getList();
+    }
+
+    public String getJson(final String path){
+        WebClient webClient = new WebClient(path);
+
+        return webClient.getJSON();
     }
 }
