@@ -28,7 +28,7 @@ public class Deserialize {
         String json = getJson(D_LOGIN_PASSWORD_PATH
                 + login + "&password=" + password);
 
-        int result = 0;
+        int result;
 
         Error error = deserializeError(json);
 
@@ -89,6 +89,15 @@ public class Deserialize {
                 .registerTypeAdapter(Task.class, new TaskDeserializer())
                 .registerTypeAdapter(TicketList.class, new TicketListDeserializer())
                 .create();
+
+        /* for handle error
+        String json = "{" +
+                "\"ErrorCode\": 2," +
+                "\"ErrorMessage\": \"@IsProblemView is not a parameter for procedure Task_Select2.\"" +
+                "}";
+
+        TicketList ticketList = gson.fromJson(json, TicketList.class);*/
+
 
         TicketList ticketList = gson.fromJson(getJson(D_TASK_PATH
                 + user_id + "&date=" + date), TicketList.class);

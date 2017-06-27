@@ -46,9 +46,7 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
         holder.clientFio.setText(listOfTask.get(position).getFirstName()
                 + " " + listOfTask.get(position).getSecondName()
                 + " " + listOfTask.get(position).getMiddleName());
-        holder.serviceInfo.setText(
-                Objects.requireNonNull(listOfTask.get(position).getServiceInfo()
-                        ,"service info need not null"));
+        holder.serviceInfo.setText(listOfTask.get(position).getServiceInfo());
 
         holder.task_id = listOfTask.get(position).getId();
         holder.client_id = listOfTask.get(position).getClientId();
@@ -100,10 +98,7 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    System.out.println("CLICK: " + position);
                     Intent detail_ticket = new Intent(v.getContext(),DetailTicketActivity.class);
-
 
                     detail_ticket.putExtra("clientFio",clientFio.getText());
                     detail_ticket.putExtra("clientPhone",clientPhone.getText());

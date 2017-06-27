@@ -49,6 +49,8 @@ public class TicketActivity extends AppCompatActivity implements NavigationView.
         controller = new TicketController();
 
         listOfTask = controller.getListOfTask(TicketActivity.this, (Integer) extras.get("userId"), "2017.06.13");
+        //listOfTask = new LinkedList<>();
+        //listOfTask.add(new Task("Нет заявок на этот день"));
 
     }
 
@@ -131,7 +133,6 @@ public class TicketActivity extends AppCompatActivity implements NavigationView.
             Toast.makeText(this,"CALENDAR",Toast.LENGTH_SHORT).show();
         } else if(id == R.id.contacts){
             //Handle contact
-            //Toast.makeText(this,"CONTACTS",Toast.LENGTH_SHORT).show();
             Intent contact = new Intent(TicketActivity.this,ContactActivity.class);
             startActivity(contact);
         } else if(id == R.id.new_account) {

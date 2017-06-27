@@ -60,4 +60,10 @@ class Task {
         this.firstName = firstName
     }
 
+    //for check error on TaskListDeserialize
+    constructor(status: Int, serviceInfo: String) {
+        this.status = status
+        this.serviceInfo = serviceInfo
+    }
+
 }
