@@ -36,6 +36,8 @@
     <string name="task_detail_pay_method">"Оплата наличными:"</string>
     <string name="task_detail_finish">"Завершить"</string>
 
+    <string name="card_view_lbl_task_service_name">"Название сервиса"</string>
+
     <!-- Navigation View header-->
     <string name="user">"Никита Веселов"</string>
     <string name="userPhone">"+7(926)2422316"</string>
@@ -52,5 +54,8 @@
     <string name="ContactTextLableSecretary">"Секретари"</string>
     <string name="ContactTextLableAccounts">"Аккаунты"</string>
     <string name="ContactBtnText">"Открыть"</string>
+
+
+
 
 </resources>

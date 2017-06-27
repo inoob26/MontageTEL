@@ -8,6 +8,7 @@
             android:layout_height="match_parent">
     <android.support.constraint.ConstraintLayout
             android:layout_width="wrap_content"
+            android:background="@color/white"
             android:layout_height="wrap_content" >
 
         <TextView
@@ -69,6 +70,8 @@
                 tools:layout_constraintTop_creator="1" tools:layout_constraintRight_creator="1"
                 android:layout_marginTop="14dp" app:layout_constraintTop_toBottomOf="@+id/view2"
                 tools:layout_constraintLeft_creator="1"/>
+
+        <!--
         <TextView
                 android:text="@string/task_detail_service_task"
                 android:layout_width="wrap_content"
@@ -165,12 +168,25 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/task_detail_switch_material" android:layout_marginEnd="16dp"
                 app:layout_constraintRight_toRightOf="parent" android:layout_marginRight="16dp"
-                android:layout_marginTop="10dp" app:layout_constraintTop_toBottomOf="@+id/task_detail_switch_addtional"/>
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_switch_addtional"/> -->
+
+        <android.support.v7.widget.RecyclerView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/recycle_view_task_service_list"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/task_detail_task"
+                android:layout_marginStart="16dp"
+                app:layout_constraintLeft_toLeftOf="parent" android:layout_marginEnd="16dp"
+                app:layout_constraintRight_toRightOf="parent" android:layout_marginTop="8dp"
+                android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+
         <View android:layout_width="wrap_content"
               android:background="@color/color_task_list_separator_line"
-              app:layout_constraintTop_toBottomOf="@+id/textView13"
-              tools:layout_editor_absoluteX="0dp" android:layout_marginTop="10dp"
-              android:id="@+id/view4" android:layout_height="1dp"/>
+              tools:layout_editor_absoluteX="0dp"
+              android:id="@+id/view4" android:layout_marginTop="8dp"
+              app:layout_constraintTop_toBottomOf="@+id/recycle_view_task_service_list" android:layout_height="1dp"/>
         <TextView
                 android:text="@string/task_detail_pay"
                 android:layout_width="wrap_content"

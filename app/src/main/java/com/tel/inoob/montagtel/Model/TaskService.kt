@@ -42,4 +42,9 @@ class TaskService {
         this.tarifType = tarifType
         this.cost = cost
     }
+
+    constructor(id: Int, serviceName: String){
+        this.id = id
+        this.serviceName = serviceName
+    }
 }

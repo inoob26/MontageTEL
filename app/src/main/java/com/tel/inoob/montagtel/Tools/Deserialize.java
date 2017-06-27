@@ -118,6 +118,9 @@ public class Deserialize {
                 .registerTypeAdapter(TaskServiceList.class, new TaskServiceListDeserialize())
                 .create();
 
+        String json = "{\"ErrorCode\": 2," +
+                "\"ErrorMessage\": \"@IsProblemView is not a parameter for procedure Task_Select2.\"}";
+        //TaskServiceList taskServiceList = gson.fromJson(getJson(json), TaskServiceList.class);
         TaskServiceList taskServiceList = gson.fromJson(getJson(D_TASK_SERVICE_PATH + task_id), TaskServiceList.class);
 
         return taskServiceList.getList();
