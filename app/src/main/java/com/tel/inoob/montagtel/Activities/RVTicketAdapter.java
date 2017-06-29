@@ -106,6 +106,7 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
                     detail_ticket.putExtra("serviceInfo",serviceInfo.getText());
                     detail_ticket.putExtra("task_id",task_id);
                     detail_ticket.putExtra("client_id",client_id);
+                    detail_ticket.putExtra("task_detail_time",taskStart.getText());
 
                     v.getContext().startActivity(detail_ticket);
                 }

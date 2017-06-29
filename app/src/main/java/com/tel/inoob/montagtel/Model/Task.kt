@@ -29,41 +29,41 @@ class Task {
     var objectName : String = ""
     var startDateTime : String = ""
 
-    constructor(id: Int,
-                clientId: Int,
-                status: Int,
-                firstName: String,
-                secondName: String,
-                middleName: String,
-                serviceInfo: String,
-                clientPhone: String,
-                flatNumber: String,
-                objectName: String,
-                startDateTime: String
+    constructor(id: Int?,
+                clientId: Int?,
+                status: Int?,
+                firstName: String?,
+                secondName: String?,
+                middleName: String?,
+                serviceInfo: String?,
+                clientPhone: String?,
+                flatNumber: String?,
+                objectName: String?,
+                startDateTime: String?
     ) {
-        this.id = id
-        this.clientId = clientId
-        this.status = status
-        this.firstName = firstName
-        this.secondName = secondName
-        this.middleName = middleName
-        this.serviceInfo = serviceInfo
-        this.clientPhone = clientPhone
-        this.flatNumber = flatNumber
-        this.objectName = objectName
-        this.startDateTime = startDateTime
+        this.id = id ?: 0
+        this.clientId = clientId ?: 0
+        this.status = status ?: 0
+        this.firstName = firstName ?: ""
+        this.secondName = secondName ?: ""
+        this.middleName = middleName ?: ""
+        this.serviceInfo = serviceInfo ?: ""
+        this.clientPhone = clientPhone ?: ""
+        this.flatNumber = flatNumber ?: ""
+        this.objectName = objectName ?: ""
+        this.startDateTime = startDateTime ?: ""
     }
 
     constructor(){}
 
-    constructor(firstName : String){
-        this.firstName = firstName
+    constructor(firstName : String?){
+        this.firstName = firstName ?: "firstName"
     }
 
     //for check error on TaskListDeserialize
-    constructor(status: Int, serviceInfo: String) {
-        this.status = status
-        this.serviceInfo = serviceInfo
+    constructor(status: Int?, serviceInfo: String?) {
+        this.status = status ?: 0
+        this.serviceInfo = serviceInfo ?: "serviceInfo"
     }
 
 }

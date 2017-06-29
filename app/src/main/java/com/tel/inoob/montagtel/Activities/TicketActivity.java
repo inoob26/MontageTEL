@@ -48,7 +48,7 @@ public class TicketActivity extends AppCompatActivity implements NavigationView.
         Bundle extras = getIntent().getExtras();
         controller = new TicketController();
 
-        listOfTask = controller.getListOfTask(TicketActivity.this, (Integer) extras.get("userId"), "2017.06.13");
+        listOfTask = controller.getListOfTask((Integer) extras.get("userId"));
         //listOfTask = new LinkedList<>();
         //listOfTask.add(new Task("Нет заявок на этот день"));
 

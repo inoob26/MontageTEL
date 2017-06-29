@@ -25,8 +25,7 @@ public class Deserialize {
     private final static String D_TASK_SERVICE_PATH = "http://10.192.25.4:9190/mobile/ServiceByTask?id=";
 
     public int deserializeLoginPasswod(final String login, final  String password) {
-        String json = getJson(D_LOGIN_PASSWORD_PATH
-                + login + "&password=" + password);
+        String json = getJson(D_LOGIN_PASSWORD_PATH + login + "&password=" + password);
 
         int result;
 
@@ -89,18 +88,7 @@ public class Deserialize {
                 .registerTypeAdapter(Task.class, new TaskDeserializer())
                 .registerTypeAdapter(TicketList.class, new TicketListDeserializer())
                 .create();
-
-        /* for handle error
-        String json = "{" +
-                "\"ErrorCode\": 2," +
-                "\"ErrorMessage\": \"@IsProblemView is not a parameter for procedure Task_Select2.\"" +
-                "}";
-
-        TicketList ticketList = gson.fromJson(json, TicketList.class);*/
-
-
-        TicketList ticketList = gson.fromJson(getJson(D_TASK_PATH
-                + user_id + "&date=" + date), TicketList.class);
+        TicketList ticketList = gson.fromJson(getJson(D_TASK_PATH + user_id + "&date=" + date), TicketList.class);
 
         return ticketList.getTaskList();
     }
@@ -118,9 +106,6 @@ public class Deserialize {
                 .registerTypeAdapter(TaskServiceList.class, new TaskServiceListDeserialize())
                 .create();
 
-        String json = "{\"ErrorCode\": 2," +
-                "\"ErrorMessage\": \"@IsProblemView is not a parameter for procedure Task_Select2.\"}";
-        //TaskServiceList taskServiceList = gson.fromJson(getJson(json), TaskServiceList.class);
         TaskServiceList taskServiceList = gson.fromJson(getJson(D_TASK_SERVICE_PATH + task_id), TaskServiceList.class);
 
         return taskServiceList.getList();

@@ -29,7 +29,12 @@ public class DetailTicketActivity extends AppCompatActivity {
     private TextView serviceInfo;
     private TextView task_id;
     private TextView client_id;
+    private TextView start_time;
     private RecyclerView recyclerView_task_service_list;
+
+
+    private TextView task_detail_lbl_for_device_sum;
+    private TextView task_detail_lbl_pay_total_sum;
 
     private void onLoad() {
         task_id = (TextView) findViewById(R.id.task_detail_id);
@@ -38,6 +43,9 @@ public class DetailTicketActivity extends AppCompatActivity {
         clientPhone = (TextView) findViewById(R.id.ticket_detail_client_phone);
         taskAddress = (TextView) findViewById(R.id.ticket_detail_task_address);
         serviceInfo = (TextView) findViewById(R.id.ticket_detail_service_info);
+        start_time = (TextView) findViewById(R.id.task_detail_time);
+        task_detail_lbl_for_device_sum = (TextView) findViewById(R.id.task_detail_lbl_for_device_sum);
+        task_detail_lbl_pay_total_sum = (TextView) findViewById(R.id.task_detail_lbl_pay_total_sum);
 
         Bundle extras = getIntent().getExtras();
 
@@ -47,6 +55,7 @@ public class DetailTicketActivity extends AppCompatActivity {
         serviceInfo.setText((String)extras.get("serviceInfo"));
         task_id.setText("№" + extras.get("task_id").toString());
         client_id.setText(extras.get("client_id").toString());
+        start_time.setText(extras.get("task_detail_time").toString());
 
         getInformation((int) extras.get("task_id"));
         initializeRecycleView((int) extras.get("task_id"));
@@ -65,9 +74,27 @@ public class DetailTicketActivity extends AppCompatActivity {
         controller = new TicketController();
         List<TaskService> list = controller.getListOfTaskService(task_id);
 
+        double device_sum = 0.0;
+        double total_sum = 0.0;
+
         for (TaskService task: list) {
-            System.out.println("Service NAME: " + task.getServiceName() + " PRICE: " + task.getPrice());
+            if(task.getScladId() > 0){
+                device_sum += task.getPrice();
+                total_sum += task.getPrice();
+            } else {
+                total_sum += task.getPrice();
+            }
+            System.out.println("DetailTicketActivity Service NAME: " + task.getServiceName()
+                    + " PRICE: " + task.getPrice()
+                    + " SCLAD: " + task.getScladId());
         }
+
+        task_detail_lbl_for_device_sum.setText("" + ((int) device_sum) + " руб");
+        task_detail_lbl_pay_total_sum.setText("" + ((int) total_sum) + " руб");
+
+        //task_detail_lbl_for_device_sum - для суммы за оборудование
+        //task_detail_lbl_pay_total_sum
+
 
         RVTaskSeviceListAdapter adapter = new RVTaskSeviceListAdapter(list);
         recyclerView_task_service_list.setAdapter(adapter);

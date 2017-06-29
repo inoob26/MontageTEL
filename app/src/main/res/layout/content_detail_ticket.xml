@@ -4,7 +4,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_marginTop="50dp"
-            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingBottom="3dp"
             android:layout_height="match_parent">
     <android.support.constraint.ConstraintLayout
             android:layout_width="wrap_content"
@@ -13,22 +13,23 @@
 
         <TextView
                 android:text="@string/card_taskAddress"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/ticket_detail_task_address"
-                android:paddingLeft="16dp" android:layout_marginTop="16dp" app:layout_constraintTop_toTopOf="parent"
-                tools:layout_constraintLeft_creator="1" app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginStart="16dp" android:layout_marginLeft="16dp" android:layout_marginEnd="16dp"
-                app:layout_constraintRight_toRightOf="parent" android:layout_marginRight="16dp"
-                android:textAlignment="textStart"/>
+                android:paddingLeft="16dp"
+                android:textAlignment="textStart"
+                android:layout_marginEnd="8dp" app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginStart="8dp" app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="16dp" app:layout_constraintTop_toTopOf="parent"
+                tools:layout_constraintRight_creator="1" tools:layout_constraintLeft_creator="1"/>
         <TextView
                 android:text="@string/card_clientFIO"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/ticket_detail_client_fio" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/ticket_detail_task_address" android:paddingLeft="16dp"
-                tools:layout_constraintLeft_creator="1" app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginStart="16dp" android:layout_marginLeft="16dp"/>
+                android:id="@+id/ticket_detail_client_fio"
+                android:paddingLeft="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/ticket_detail_task_address" android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp" app:layout_constraintLeft_toLeftOf="parent"/>
         <TextView
                 android:text="@string/card_clientPhone"
                 android:layout_width="wrap_content"
@@ -39,9 +40,9 @@
                 app:layout_constraintTop_toBottomOf="@+id/ticket_detail_client_fio"
                 android:layout_marginTop="8dp"
                 android:paddingLeft="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginLeft="16dp"/>
+                android:layout_marginLeft="8dp"/>
         <View android:layout_width="wrap_content"
               android:layout_height="1dp"
               android:background="@color/color_task_list_separator_line"
@@ -174,28 +175,38 @@
         <android.support.v7.widget.RecyclerView
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/recycle_view_task_service_list"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 app:layout_constraintTop_toBottomOf="@+id/task_detail_task"
                 android:layout_marginStart="16dp"
                 app:layout_constraintLeft_toLeftOf="parent" android:layout_marginEnd="16dp"
                 app:layout_constraintRight_toRightOf="parent" android:layout_marginTop="8dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content" tools:layout_constraintRight_creator="1"
+                tools:layout_constraintLeft_creator="1">
         </android.support.v7.widget.RecyclerView>
+
+        <Button
+                android:text="Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/task_detail_btn_add_task_service"
+                app:layout_constraintTop_toBottomOf="@+id/recycle_view_task_service_list"
+                android:layout_marginEnd="16dp" app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="8dp"/>
 
         <View android:layout_width="wrap_content"
               android:background="@color/color_task_list_separator_line"
-              tools:layout_editor_absoluteX="0dp"
               android:id="@+id/view4" android:layout_marginTop="8dp"
-              app:layout_constraintTop_toBottomOf="@+id/recycle_view_task_service_list" android:layout_height="1dp"/>
+              app:layout_constraintTop_toBottomOf="@+id/task_detail_btn_add_task_service" android:layout_height="1dp"
+              tools:layout_constraintLeft_creator="1" app:layout_constraintLeft_toLeftOf="parent"/>
         <TextView
                 android:text="@string/task_detail_pay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/task_detail_lbl_pay" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/view4" android:layout_marginEnd="16dp"
-                app:layout_constraintRight_toRightOf="parent" android:layout_marginRight="16dp"
-                android:layout_marginStart="16dp" app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginLeft="16dp" android:textAlignment="center"/>
+                app:layout_constraintTop_toBottomOf="@+id/view4"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textAlignment="center" tools:layout_constraintRight_creator="1"
+                tools:layout_constraintLeft_creator="1"/>
         <TextView
                 android:text="@string/task_detail_pay_for_additional_service"
                 android:layout_width="wrap_content"
@@ -277,14 +288,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:id="@+id/task_detail_submit"
-                android:layout_marginEnd="16dp"
                 app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginRight="16dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/task_detail_checkBox_pay_method"
-                android:textAlignment="center" android:layout_marginStart="16dp"
-                app:layout_constraintLeft_toLeftOf="parent" android:layout_marginLeft="16dp"
-                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp"/>
+                android:textAlignment="center"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp"
+                tools:layout_constraintRight_creator="1" tools:layout_constraintLeft_creator="1"/>
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

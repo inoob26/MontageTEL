@@ -28,23 +28,23 @@ class TaskService {
                 serviceName: String?,
                 scladId: Int?, tarifName: String?, price: Double?,
                 tarifType: Byte?, cost: Double?) {
-        this.id = id
-        this.taskId = taskId
-        this.isBreak = isBreak
-        this.isCompleted = isCompleted
-        this.isPlan = isPlan
-        this.quantity = quantity
-        this.serviceTemplateId = serviceTemplateId
-        this.serviceName = serviceName
-        this.scladId = scladId
-        this.tarifName = tarifName
-        this.price = price
-        this.tarifType = tarifType
-        this.cost = cost
+        this.id = id ?: 0
+        this.taskId = taskId ?: 0
+        this.isBreak = isBreak ?: false
+        this.isCompleted = isCompleted ?: false
+        this.isPlan = isPlan ?: false
+        this.quantity = quantity ?: 0
+        this.serviceTemplateId = serviceTemplateId ?: 0
+        this.serviceName = serviceName ?: ""
+        this.scladId = scladId ?: 0
+        this.tarifName = tarifName ?: ""
+        this.price = price ?: 0.0
+        this.tarifType = tarifType ?: 0
+        this.cost = cost ?: 0.0
     }
 
-    constructor(id: Int, serviceName: String){
-        this.id = id
-        this.serviceName = serviceName
+    constructor(id: Int?, serviceName: String?){
+        this.id = id ?: 0
+        this.serviceName = serviceName ?: "serviceName"
     }
 }

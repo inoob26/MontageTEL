@@ -6,6 +6,7 @@ import com.tel.inoob.montagtel.Model.TaskService;
 import com.tel.inoob.montagtel.Tools.Deserialize;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
@@ -17,14 +18,20 @@ import java.util.List;
  */
 public class TicketController {
 
-    public List<Task> getListOfTask(final Context context,final int user_id, final String date){
+    public List<Task> getListOfTask(final int user_id){
         List<Task> listOfTask = new LinkedList<>();
 
         Deserialize deserialize = new Deserialize();
         DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
         Date today = new Date();
+        /*
+        try {
+            today = dateFormat.parse("2017.06.26");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }*/
 
-            //listOfTask = deserialize.deserializeTask(user_id, date);
+        //listOfTask = deserialize.deserializeTask(user_id, date);
             listOfTask = deserialize.deserializeTask(user_id,dateFormat.format(today));
 
             if (listOfTask.isEmpty()) {
