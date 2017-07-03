@@ -31,10 +31,10 @@ public class WebClient {
      * @return json response
      */
     public String getJSON(){
-        JSON json = new JSON();
+        //JSON json = new JSON();
         String rs = "";
         try {
-            rs = json.execute(LINK).get();
+            rs = new JSON().execute(LINK).get();
         } catch (InterruptedException e) {
             Log.e(TAG,"InterruptedException " + e.getMessage());
         } catch (ExecutionException e) {

@@ -1,7 +1,5 @@
 package com.tel.inoob.montagtel.Activities;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -11,20 +9,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 import com.tel.inoob.montagtel.Controller.TicketController;
-import com.tel.inoob.montagtel.Model.Error;
 import com.tel.inoob.montagtel.Model.Task;
 import com.tel.inoob.montagtel.R;
-import com.tel.inoob.montagtel.Tools.Deserialize;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -40,7 +30,6 @@ public class TicketActivity extends AppCompatActivity implements NavigationView.
 
     private TicketController controller;
     private List<Task> listOfTask;
-    private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private RecyclerView recyclerView;
 
@@ -49,9 +38,6 @@ public class TicketActivity extends AppCompatActivity implements NavigationView.
         controller = new TicketController();
 
         listOfTask = controller.getListOfTask((Integer) extras.get("userId"));
-        //listOfTask = new LinkedList<>();
-        //listOfTask.add(new Task("Нет заявок на этот день"));
-
     }
 
     private void initializeAdapter(){
@@ -72,7 +58,6 @@ public class TicketActivity extends AppCompatActivity implements NavigationView.
 
         onLoad();
         initializeAdapter();
-        initToolbar();
         initNavigationView();
     }
 
@@ -88,6 +73,7 @@ public class TicketActivity extends AppCompatActivity implements NavigationView.
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    /*
     private void initToolbar() {
         //initialize toolbar as ActionBar for back dependency with android less 21 API
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -99,7 +85,7 @@ public class TicketActivity extends AppCompatActivity implements NavigationView.
                 return false;
             }
         });
-    }
+    }*/
 
 
 

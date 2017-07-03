@@ -24,13 +24,14 @@ class TicketListDeserializer : JsonDeserializer<TicketList> {
             val sdf2 = SimpleDateFormat("HH:mm")
 
 
-            var jsonObject: JsonObject
-
+            var jsonObject: JsonObject?
 
             for (element: JsonElement in array) {
                 jsonObject = element.asJsonObject
+
                 //Reserve status
                 if (jsonObject.get("Status").asInt == 11) {
+
                     ticketList.addTask(Task(
                             jsonObject.get("Id").asInt,
                             0,
@@ -38,7 +39,8 @@ class TicketListDeserializer : JsonDeserializer<TicketList> {
                             "FirstName",
                             "SecondName",
                             "MiddleName",
-                            jsonObject.get("ServiceInfo").asString,
+                            //joinString(jsonObject.get("ServiceInfo").asString),
+                            "ServiceInfo",
                             "ClientPhone",
                             "FlatNumber",
                             jsonObject.get("ObjectName").asString,
@@ -52,7 +54,8 @@ class TicketListDeserializer : JsonDeserializer<TicketList> {
                             jsonObject.get("FirstName").asString,
                             jsonObject.get("SecondName").asString,
                             jsonObject.get("MiddleName").asString,
-                            jsonObject.get("ServiceInfo").asString,
+                            //joinString(jsonObject.get("ServiceInfo").asString),
+                            "ServiceInfo",
                             jsonObject.get("ClientPhone").asString,
                             jsonObject.get("FlatNumber").asString,
                             jsonObject.get("ObjectName").asString,
@@ -69,5 +72,9 @@ class TicketListDeserializer : JsonDeserializer<TicketList> {
         }
 
         return ticketList
+    }
+
+    private fun joinString(str: String?, separator: String = "") : String {
+        return (str + separator)
     }
 }

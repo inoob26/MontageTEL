@@ -8,8 +8,9 @@
     <string name="login_form_signin">"Вход в систему"</string>
     <string name="login_form_loginpassword_error">"пара логин пароль не верны"</string>
 
-    <string name="date_picker">"Сегодня"</string>
+    <string name="date_picker">"Выбрать дату"</string>
     <!-- CardView Ticket -->
+    <string name="recycle_view_date_lbl">"Заявки на 13.06"</string>
     <string name="card_task_id">"№25134"</string>
     <string name="card_client_id">"ID 41886"</string>
     <string name="card_task_start_id">"12:00"</string>
@@ -54,7 +55,6 @@
     <string name="ContactTextLableSecretary">"Секретари"</string>
     <string name="ContactTextLableAccounts">"Аккаунты"</string>
     <string name="ContactBtnText">"Открыть"</string>
-
 
 
 

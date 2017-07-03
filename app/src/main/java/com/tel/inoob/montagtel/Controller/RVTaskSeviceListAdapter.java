@@ -19,7 +19,16 @@ public class RVTaskSeviceListAdapter extends RecyclerView.Adapter<RVTaskSeviceLi
 
     private List<TaskService> taskServiceList;
 
+    /*
     public RVTaskSeviceListAdapter(List<TaskService> taskServiceList){
+        this.taskServiceList = taskServiceList;
+    }*/
+
+    public RVTaskSeviceListAdapter(){
+
+    }
+
+    public void setTaskServiceList(List<TaskService> taskServiceList) {
         this.taskServiceList = taskServiceList;
     }
 

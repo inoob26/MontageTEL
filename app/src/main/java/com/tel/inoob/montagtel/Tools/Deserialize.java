@@ -1,12 +1,23 @@
 package com.tel.inoob.montagtel.Tools;
 
+import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.tel.inoob.montagtel.Deserialize.*;
 import com.tel.inoob.montagtel.Model.*;
 import com.tel.inoob.montagtel.Model.Error;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
+import io.reactivex.schedulers.Schedulers;
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
 import java.util.List;
+import java.util.concurrent.Callable;
 
 /**
  * {@code Deserialize class} work with webservice.
