@@ -55,7 +55,12 @@
     <string name="ContactTextLableSecretary">"Секретари"</string>
     <string name="ContactTextLableAccounts">"Аккаунты"</string>
     <string name="ContactBtnText">"Открыть"</string>
+    <string name="title_activity_task_list">TaskListActivity</string>
 
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 
 
 </resources>

@@ -23,14 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.TicketActivity">
-        </activity>
+        <activity android:name=".Activities.DetailTicketActivity"/>
         <activity
-                android:name=".Activities.ContactActivity"
-                android:label="@string/title_activity_contact"
+                android:name=".Activities.TaskListActivity"
+                android:label="@string/title_activity_task_list"
                 android:theme="@style/AppTheme">
-        </activity>
-        <activity android:name=".Activities.DetailTicketActivity">
         </activity>
     </application>
 

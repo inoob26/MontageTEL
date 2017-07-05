@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools"
+                tools:context="com.tel.inoob.montagtel.Activities.GraphicFragment"
+                xmlns:app=" http://schemas.android.com/apk/res-auto">
+    <android.support.design.widget.AppBarLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:theme="@style/AppTheme.AppBarOverlay">
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/date_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorTaskToolBar"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                android:weightSum="1">
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/recycle_view_date_lbl"
+                          android:textColor="#222222"
+                          android:textSize="18sp"
+                          android:id="@+id/date_lbl"
+                          android:textAlignment="textStart"
+                          android:layout_centerVertical="true"
+                          android:layout_alignParentStart="true"/>
+
+                <ImageButton android:layout_width="wrap_content"
+                             android:background="@null"
+                             android:src="@mipmap/ic_calendar_light"
+                             android:layout_height="wrap_content"
+                             android:layout_centerVertical="true"
+                             android:layout_alignParentEnd="true"
+                             android:paddingRight="16dp"/>
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+    <android.support.v7.widget.RecyclerView
+            android:paddingTop="60dp"
+            android:layout_height="match_parent"
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

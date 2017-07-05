@@ -46,7 +46,6 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
         holder.clientFio.setText(listOfTask.get(position).getFirstName()
                 + " " + listOfTask.get(position).getSecondName()
                 + " " + listOfTask.get(position).getMiddleName());
-        holder.serviceInfo.setText(listOfTask.get(position).getServiceInfo());
 
         holder.task_id = listOfTask.get(position).getId();
         holder.client_id = listOfTask.get(position).getClientId();
@@ -78,7 +77,6 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
         TextView clientFio;
         TextView clientPhone;
         TextView taskAddress;
-        TextView serviceInfo;
         TextView taskStart;
         int task_id;
         int client_id;
@@ -91,7 +89,6 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
             clientFio = (TextView) itemView.findViewById(R.id.clientFIO);
             clientPhone = (TextView) itemView.findViewById(R.id.clientPhone);
             taskAddress = (TextView) itemView.findViewById(R.id.taskAddress);
-            serviceInfo = (TextView) itemView.findViewById(R.id.serviceInfo);
             taskStart = (TextView) itemView.findViewById(R.id.task_start);
 
 
@@ -103,7 +100,6 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
                     detail_ticket.putExtra("clientFio",clientFio.getText());
                     detail_ticket.putExtra("clientPhone",clientPhone.getText());
                     detail_ticket.putExtra("taskAddress",taskAddress.getText());
-                    detail_ticket.putExtra("serviceInfo",serviceInfo.getText());
                     detail_ticket.putExtra("task_id",task_id);
                     detail_ticket.putExtra("client_id",client_id);
                     detail_ticket.putExtra("task_detail_time",taskStart.getText());

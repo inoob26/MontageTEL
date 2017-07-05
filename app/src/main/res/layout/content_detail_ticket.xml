@@ -50,26 +50,14 @@
               android:layout_marginTop="8dp" android:id="@+id/view" tools:layout_constraintLeft_creator="1"
               app:layout_constraintLeft_toLeftOf="parent"/>
         <TextView
-                android:text="@string/card_serviceInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ticket_detail_service_info" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/view" android:layout_marginStart="16dp"
-                app:layout_constraintLeft_toLeftOf="parent" android:layout_marginLeft="16dp"/>
-        <View android:layout_width="wrap_content"
-              android:background="@color/color_task_list_separator_line"
-              app:layout_constraintTop_toBottomOf="@+id/ticket_detail_service_info"
-              android:layout_marginTop="8dp" android:layout_height="1dp" android:id="@+id/view2"
-              tools:layout_constraintLeft_creator="1" app:layout_constraintLeft_toLeftOf="parent"/>
-        <TextView
                 android:text="@string/task_detail_task"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/task_detail_task" android:textAlignment="center"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                tools:layout_constraintTop_creator="1" tools:layout_constraintRight_creator="1"
-                android:layout_marginTop="14dp" app:layout_constraintTop_toBottomOf="@+id/view2"
+                tools:layout_constraintRight_creator="1"
+                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/view"
                 tools:layout_constraintLeft_creator="1"/>
 
         <!--

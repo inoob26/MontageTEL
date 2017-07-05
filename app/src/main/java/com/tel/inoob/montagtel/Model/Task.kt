@@ -23,7 +23,6 @@ class Task {
     var firstName : String = ""
     var secondName : String = ""
     var middleName : String = ""
-    var serviceInfo : String = ""
     var clientPhone : String = ""
     var flatNumber : String = ""
     var objectName : String = ""
@@ -35,7 +34,6 @@ class Task {
                 firstName: String?,
                 secondName: String?,
                 middleName: String?,
-                serviceInfo: String?,
                 clientPhone: String?,
                 flatNumber: String?,
                 objectName: String?,
@@ -47,7 +45,6 @@ class Task {
         this.firstName = firstName ?: ""
         this.secondName = secondName ?: ""
         this.middleName = middleName ?: ""
-        this.serviceInfo = serviceInfo ?: ""
         this.clientPhone = clientPhone ?: ""
         this.flatNumber = flatNumber ?: ""
         this.objectName = objectName ?: ""
@@ -63,7 +60,6 @@ class Task {
     //for check error on TaskListDeserialize
     constructor(status: Int?, serviceInfo: String?) {
         this.status = status ?: 0
-        this.serviceInfo = serviceInfo ?: "serviceInfo"
     }
 
 }

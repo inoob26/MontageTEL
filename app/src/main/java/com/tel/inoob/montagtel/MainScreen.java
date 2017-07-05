@@ -8,8 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.tel.inoob.montagtel.Activities.ContactActivity;
-import com.tel.inoob.montagtel.Activities.TicketActivity;
+import com.tel.inoob.montagtel.Activities.TaskListActivity;
 import com.tel.inoob.montagtel.Tools.Deserialize;
 
 /**
@@ -54,8 +53,8 @@ public class MainScreen extends AppCompatActivity {
                 pd.setMessage("Loading...");
                 pd.show();
 
-                Intent ticket = new Intent(MainScreen.this,TicketActivity.class);
-                //Intent contact = new Intent(MainScreen.this, ContactActivity.class);
+
+                Intent ticket = new Intent(MainScreen.this, TaskListActivity.class);
                 Deserialize deserialize = new Deserialize();
                 int response = deserialize.deserializeLoginPasswod(login.getText().toString(), password.getText().toString());
 
@@ -66,7 +65,6 @@ public class MainScreen extends AppCompatActivity {
                     error.setVisibility(View.INVISIBLE);
                     ticket.putExtra("userId",response);
                     startActivity(ticket);
-                    //startActivity(contact);
                 } else {
                     error.setVisibility(View.VISIBLE);
                 }

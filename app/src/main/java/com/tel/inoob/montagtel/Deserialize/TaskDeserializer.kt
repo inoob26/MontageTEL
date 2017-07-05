@@ -45,9 +45,6 @@ class TaskDeserializer : JsonDeserializer<Task> {
         if(!checkElement(jsonObj.get("ClientPhone"),"Task ClientPhone is null")){
             task.clientPhone = jsonObj.get("ClientPhone").asString
         }
-        if(!checkElement(jsonObj.get("ServiceInfo"),"Task ServiceInfo is null")){
-            task.serviceInfo = jsonObj.get("ServiceInfo").asString
-        }
 
         //val getFormatFromServer = "yyyy.mm.dd HH:mm"
         //val timeFormat = "HH:mm"
