@@ -52,7 +52,7 @@ public class GraphicFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        RVTicketAdapter adapter = new RVTicketAdapter(listOfTask);
+        RVTicketAdapter adapter = new RVTicketAdapter(listOfTask,user_id);
         recyclerView.setAdapter(adapter);
 
         return view;

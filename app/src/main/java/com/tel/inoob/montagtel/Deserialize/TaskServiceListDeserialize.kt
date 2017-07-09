@@ -48,18 +48,4 @@ class TaskServiceListDeserialize : JsonDeserializer<TaskServiceList> {
 
         return taskServiceList
     }
-
-    /*
-    private fun joinString(str: String?, separator: String = "") : String {
-        return (str + separator)
-    }
-
-
-    private fun joinInt(i: Int? ) : Int {
-        if(i != null){
-            return i
-        } else {
-            return 0
-        }
-    }*/
 }

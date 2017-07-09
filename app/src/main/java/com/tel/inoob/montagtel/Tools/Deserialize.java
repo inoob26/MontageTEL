@@ -1,5 +1,6 @@
 package com.tel.inoob.montagtel.Tools;
 
+import android.os.AsyncTask;
 import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,6 +35,7 @@ public class Deserialize {
     private final static String D_LOGIN_PASSWORD_PATH = "http://10.192.25.4:9190/mobile/login?login=";
     public final static String D_TASK_PATH = "http://10.192.25.4:9190/mobile/task?id=";
     private final static String D_TASK_SERVICE_PATH = "http://10.192.25.4:9190/mobile/ServiceByTask?id=";
+    private final static String D_SERVICE_ADVANS_PATH = "http://10.192.25.4:9190/mobile/ServiceAdvans?userid=";
 
     public int deserializeLoginPasswod(final String login, final  String password) {
         String json = getJson(D_LOGIN_PASSWORD_PATH + login + "&password=" + password);
@@ -120,6 +122,24 @@ public class Deserialize {
         TaskServiceList taskServiceList = gson.fromJson(getJson(D_TASK_SERVICE_PATH + task_id), TaskServiceList.class);
 
         return taskServiceList.getList();
+    }
+
+    public List<ServiceAdvans> deserializeServiceAdvans(final int user_id){
+
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(ServiceAdvans.class, new ServiceAdvansDeserializer())
+                .registerTypeAdapter(ServiceAdvansList.class, new ServiceAdvansListDeserializer())
+                .create();
+
+        String json = getJson(D_SERVICE_ADVANS_PATH + user_id);
+
+        ServiceAdvansList serviceAdvansList = gson.fromJson(json, ServiceAdvansList.class);
+
+        for (ServiceAdvans serviceAdvans : serviceAdvansList.getList()) {
+            System.out.println(serviceAdvans.getServiceName());
+        }
+
+        return serviceAdvansList.getList();
     }
 
     public String getJson(final String path){

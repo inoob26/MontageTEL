@@ -20,8 +20,11 @@ import java.util.Objects;
  */
 public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.TicketViewHolder>{
     private List<Task> listOfTask;
-    public RVTicketAdapter(List<Task> listOfTask) {
+    private int user_id;
+
+    public RVTicketAdapter(List<Task> listOfTask, int user_id) {
         this.listOfTask = listOfTask;
+        this.user_id = user_id;
     }
 
     @Override
@@ -32,7 +35,7 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
         return ticketViewHolder;
     }
 
-    //@RequiresApi(api = Build.VERSION_CODES.KITKAT)
+
     @Override
     public void onBindViewHolder(TicketViewHolder holder, int position) {
         holder.idTask.setText("№" + listOfTask.get(position).getId());
@@ -49,6 +52,7 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
 
         holder.task_id = listOfTask.get(position).getId();
         holder.client_id = listOfTask.get(position).getClientId();
+        holder.user_id = this.user_id;
 
         //set color for task
         if(listOfTask.get(position).getStatus() == 1){
@@ -80,6 +84,7 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
         TextView taskStart;
         int task_id;
         int client_id;
+        int user_id;
 
         public TicketViewHolder(View itemView) {
             super(itemView);
@@ -103,6 +108,7 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
                     detail_ticket.putExtra("task_id",task_id);
                     detail_ticket.putExtra("client_id",client_id);
                     detail_ticket.putExtra("task_detail_time",taskStart.getText());
+                    detail_ticket.putExtra("user_id",user_id);
 
                     v.getContext().startActivity(detail_ticket);
                 }

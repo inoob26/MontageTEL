@@ -21,9 +21,7 @@
     <!-- Detail Ticket -->
     <string name="task_detail_task">"Задачи"</string>
     <string name="task_detail_service_task">"Услуги и задачи"</string>
-    <string name="task_detail_format_add">"Формируются и добавляются"</string>
-    <string name="task_detail_only_manager">"Только менеджером"</string>
-    <string name="task_detail_from_craizy">"Из крэйзи хауса"</string>
+    <string name="task_detail_add_service_advans">"Добавить доп. услугу"</string>
     <string name="task_detail_exclude_task">"Кроме задач"</string>
     <string name="task_detail_additional_service">"Доп услуги и работы"</string>
     <string name="task_detail_material">"Расходные материалы"</string>
@@ -61,6 +59,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-
+    <!-- Service Advans-->
+    <string name="service_advans_name">"Протяжка кабеля"</string>
 
 </resources>
