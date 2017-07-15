@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/app_bar_task_list"
-        tools:context="com.tel.inoob.montagtel.Activities.TaskListActivity">
+        tools:context="com.tel.inoob.montagtel.View.TaskListActivity">
 
     <!--
 

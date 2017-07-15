@@ -8,8 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.tel.inoob.montagtel.Activities.TaskListActivity;
+import com.tel.inoob.montagtel.View.TaskListActivity;
 import com.tel.inoob.montagtel.Tools.Deserialize;
+
 
 /**
  * This is Login Screen
@@ -54,7 +55,7 @@ public class MainScreen extends AppCompatActivity {
                 pd.show();
 
 
-                Intent ticket = new Intent(MainScreen.this, TaskListActivity.class);
+                final Intent ticket = new Intent(MainScreen.this, TaskListActivity.class);
                 Deserialize deserialize = new Deserialize();
                 int response = deserialize.deserializeLoginPasswod(login.getText().toString(), password.getText().toString());
 
@@ -65,6 +66,7 @@ public class MainScreen extends AppCompatActivity {
                     error.setVisibility(View.INVISIBLE);
                     ticket.putExtra("userId",response);
                     startActivity(ticket);
+
                 } else {
                     error.setVisibility(View.VISIBLE);
                 }

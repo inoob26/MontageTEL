@@ -1,4 +1,4 @@
-package com.tel.inoob.montagtel.Activities;
+package com.tel.inoob.montagtel.View;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -35,11 +35,24 @@ public class RVServiceAdvansAdapter extends RecyclerView.Adapter<RVServiceAdvans
     @Override
     public void onBindViewHolder(RVServiceAdvansAdapter.ServiceAdvansViewHolder holder, int position) {
         holder.recycle_view_service_advans_name.setText(list.get(position).getServiceName());
+
     }
 
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    /**
+     * В случае, если LayoutManager добавляет элемент.
+     * LayoutManager сообщает RecyclerView о том, что создает элемент: addView.
+     * RecyclerView посылает запрос Adapter’у: onViewAttachedToWindow.
+     * @param holder holder.
+     */
+    @Override
+    public void onViewAttachedToWindow(ServiceAdvansViewHolder holder) {
+        super.onViewAttachedToWindow(holder);
+
     }
 
     public static class ServiceAdvansViewHolder extends RecyclerView.ViewHolder{

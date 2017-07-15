@@ -47,4 +47,21 @@ class TaskService {
         this.id = id ?: 0
         this.serviceName = serviceName ?: "serviceName"
     }
+
+    /**
+     * using into DetailTicketActivity for adding task from ServiceAdvansDialog.
+     */
+    constructor(id: Int?, serviceName: String?, isCompleted: Boolean?, quantity: Byte?, price: Double?){
+        this.id = id ?: 0
+        this.serviceName = serviceName ?: ""
+        this.isCompleted = isCompleted ?: false
+        this.quantity = quantity ?: 0
+        this.price = price ?: 0.0
+    }
+
+    override fun toString(): String {
+        return "{\"Id\": $id, \"IsBreak\": $isBreak, \"IsCompleted\": $isCompleted}"
+    }
+
+
 }

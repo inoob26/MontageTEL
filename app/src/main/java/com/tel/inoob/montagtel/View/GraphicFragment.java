@@ -1,4 +1,4 @@
-package com.tel.inoob.montagtel.Activities;
+package com.tel.inoob.montagtel.View;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

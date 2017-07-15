@@ -1,26 +1,19 @@
-package com.tel.inoob.montagtel.Activities
+package com.tel.inoob.montagtel.View
 
-import android.app.Dialog
-import android.support.v4.app.FragmentManager
 import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import com.tel.inoob.montagtel.Controller.RVTaskSeviceListAdapter
+import com.tel.inoob.montagtel.Controller.RVTaskServiceListAdapter
 import com.tel.inoob.montagtel.Controller.TicketController
+import com.tel.inoob.montagtel.Model.TaskService
 import com.tel.inoob.montagtel.R
-import com.tel.inoob.montagtel.Tools.Deserialize
 
-class DetailTicketActivity : AppCompatActivity() {
-
+class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
     private var controller: TicketController? = null
     private var clientFio: TextView? = null
     private var clientPhone: TextView? = null
@@ -29,10 +22,20 @@ class DetailTicketActivity : AppCompatActivity() {
     private var client_id: TextView? = null
     private var start_time: TextView? = null
     private var recyclerView_task_service_list: RecyclerView? = null
+
+    /**
+     * user id.
+     */
     private var user_id: Int = 0
     private var task_detail_btn_add_task_service: Button? = null
+    private var task_detail_submit: Button? = null
     private var task_detail_lbl_for_device_sum: TextView? = null
     private var task_detail_lbl_pay_total_sum: TextView? = null
+
+    /**
+     * list of TaskService.
+     */
+    private var list : MutableList<TaskService>? = null
 
     private fun onLoad() {
         task_id = findViewById(R.id.task_detail_id) as TextView
@@ -42,6 +45,43 @@ class DetailTicketActivity : AppCompatActivity() {
         taskAddress = findViewById(R.id.ticket_detail_task_address) as TextView
         start_time = findViewById(R.id.task_detail_time) as TextView
         task_detail_btn_add_task_service = findViewById(R.id.task_detail_btn_add_task_service) as Button
+        /**
+         * open DialogFragment for adding additional task service.
+         */
+        task_detail_btn_add_task_service!!.setOnClickListener {
+            val serviceAdvansDialog = ServiceAdvansDialog()
+            val args  = Bundle()
+            args.putInt("user_id",user_id)
+            serviceAdvansDialog.arguments = args
+            serviceAdvansDialog.show(supportFragmentManager,"Выбор доп услуги")
+        }
+
+
+        task_detail_submit = findViewById(R.id.task_detail_submit) as Button
+
+        /**
+         * submit task.
+         */
+        task_detail_submit!!.setOnClickListener {
+            println("SUBMIT!!!!!!!")
+            println("---------------------------------------")
+
+            val string: StringBuilder = StringBuilder()
+
+            string.append("[")
+
+            for (it: TaskService in list!!.iterator()){
+                string.append(it.toString() + ",")
+            }
+
+            string.setLength(string.length-1)
+            string.append("]")
+
+            println(string.toString())
+
+            println("---------------------------------------")
+        }
+
         task_detail_lbl_for_device_sum = findViewById(R.id.task_detail_lbl_for_device_sum) as TextView
         task_detail_lbl_pay_total_sum = findViewById(R.id.task_detail_lbl_pay_total_sum) as TextView
 
@@ -65,25 +105,28 @@ class DetailTicketActivity : AppCompatActivity() {
         recyclerView_task_service_list!!.layoutManager = linearLayoutManager
 
         controller = TicketController()
-        val list = controller!!.getListOfTaskService(task_id)
+        list = controller!!.getListOfTaskService(task_id)
 
         var device_sum = 0.0
         var total_sum = 0.0
 
-        for (task in list) {
-            if (0 != task.scladId) {
-                device_sum += task.price!!
-                total_sum += task.price!!
-            } else {
-                total_sum += task.price!!
+        list?.let {
+            for (task in it) {
+                if (0 != task.scladId) {
+                    device_sum += task.price!!
+                    total_sum += task.price!!
+                } else {
+                    total_sum += task.price!!
+                }
             }
         }
 
         task_detail_lbl_for_device_sum!!.text = "" + device_sum.toInt() + " руб"
         task_detail_lbl_pay_total_sum!!.text = "" + total_sum.toInt() + " руб"
 
-        var adapter: RVTaskSeviceListAdapter = RVTaskSeviceListAdapter()
+        var adapter: RVTaskServiceListAdapter = RVTaskServiceListAdapter()
         adapter.setTaskServiceList(list)
+        adapter.setItemClickListener(this)
         recyclerView_task_service_list!!.adapter = adapter
     }
 
@@ -103,16 +146,13 @@ class DetailTicketActivity : AppCompatActivity() {
             val dialNumber = Intent("android.intent.action.DIAL", Uri.parse("tel:8" + clientPhone!!.text))
             startActivity(dialNumber)
         }
+    }
 
-        task_detail_btn_add_task_service!!.setOnClickListener {
-
-            val serviceAdvansDialog = ServiceAdvansDialog()
-            val args  = Bundle()
-            args.putInt("user_id",user_id)
-            serviceAdvansDialog.isCancelable = true
-            serviceAdvansDialog.arguments = args
-            serviceAdvansDialog.show(supportFragmentManager,"tag")
-        }
+    /**
+     * bridge between RVTaskServiceListAdapter and DetailTicketActivity
+     */
+    override fun onItemClickRVTaskServiceListAdapter(position: Int, isCompleted: Boolean) {
+        list!!.get(position).isCompleted = isCompleted
     }
 
     companion object {
@@ -120,34 +160,5 @@ class DetailTicketActivity : AppCompatActivity() {
          * Layout.
          */
         private val LAYOUT = R.layout.activity_detail_ticket
-    }
-
-    /**
-     * {@code ServiceAdvansDialog} describe additional service object.
-     * it adding dynamically into DetailTicketActivity.
-     * it is service that can't be schedule before hand.
-     *
-     */
-    class ServiceAdvansDialog : DialogFragment() {
-        init {
-
-        }
-
-        override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-            val view: View = inflater!!.inflate(R.layout.fragment_service_adavans,container,false)
-
-            var recycle_view_service_advans = view!!.findViewById(R.id.recycle_view_service_advans) as RecyclerView
-            val linearLayoutManager = LinearLayoutManager(view.getContext())
-            recycle_view_service_advans!!.setLayoutManager(linearLayoutManager)
-
-            val args: Bundle = arguments
-
-            val deserialize = Deserialize()
-
-            val advansAdapter = RVServiceAdvansAdapter(deserialize.deserializeServiceAdvans(args.getInt("user_id")))
-            recycle_view_service_advans!!.setAdapter(advansAdapter)
-
-            return view
-        }
     }
 }

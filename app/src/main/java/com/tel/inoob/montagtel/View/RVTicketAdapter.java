@@ -1,4 +1,4 @@
-package com.tel.inoob.montagtel.Activities;
+package com.tel.inoob.montagtel.View;
 
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
@@ -12,7 +12,6 @@ import com.tel.inoob.montagtel.Model.Task;
 import com.tel.inoob.montagtel.R;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author inoob
@@ -95,7 +94,6 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
             clientPhone = (TextView) itemView.findViewById(R.id.clientPhone);
             taskAddress = (TextView) itemView.findViewById(R.id.taskAddress);
             taskStart = (TextView) itemView.findViewById(R.id.task_start);
-
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

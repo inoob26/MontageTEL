@@ -31,7 +31,9 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    //for web
     compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
 
     //for test
     testCompile 'junit:junit:4.12'
@@ -39,10 +41,6 @@ dependencies {
 
     //for compile
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    // Because RxAndroid releases are few and far between, it is recommended you also
-    // explicitly depend on RxJava's latest version for bug fixes and new features.
-    compile 'io.reactivex.rxjava2:rxjava:2.1.0'
 
     //for render layout
     compile 'com.android.support:appcompat-v7:25.3.1'

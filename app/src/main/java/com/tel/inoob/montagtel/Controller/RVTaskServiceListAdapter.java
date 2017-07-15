@@ -4,10 +4,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import com.tel.inoob.montagtel.Model.TaskService;
 import com.tel.inoob.montagtel.R;
+import com.tel.inoob.montagtel.View.RecyclerOnItemClickListener;
 
 import java.util.List;
 
@@ -15,21 +17,29 @@ import java.util.List;
  * @author inoob
  * @since 0.1
  */
-public class RVTaskSeviceListAdapter extends RecyclerView.Adapter<RVTaskSeviceListAdapter.TaskServiceHolder> {
+public class RVTaskServiceListAdapter extends RecyclerView.Adapter<RVTaskServiceListAdapter.TaskServiceHolder> {
 
     private List<TaskService> taskServiceList;
+    private RecyclerOnItemClickListener itemClickListener;
 
-    /*
-    public RVTaskSeviceListAdapter(List<TaskService> taskServiceList){
-        this.taskServiceList = taskServiceList;
-    }*/
-
-    public RVTaskSeviceListAdapter(){
+    public RVTaskServiceListAdapter(){
 
     }
 
+    /**
+     *
+     * @param taskServiceList
+     */
     public void setTaskServiceList(List<TaskService> taskServiceList) {
         this.taskServiceList = taskServiceList;
+    }
+
+    /**
+     *
+     * @param itemClickListener
+     */
+    public void setItemClickListener(RecyclerOnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
     }
 
     @Override
@@ -44,6 +54,7 @@ public class RVTaskSeviceListAdapter extends RecyclerView.Adapter<RVTaskSeviceLi
     public void onBindViewHolder(TaskServiceHolder holder, int position) {
         holder.task_service_name.setText(taskServiceList.get(position).getServiceName());
         holder.task_service_flag.setChecked(taskServiceList.get(position).isCompleted());
+        holder.position = position;
     }
 
     @Override
@@ -51,15 +62,31 @@ public class RVTaskSeviceListAdapter extends RecyclerView.Adapter<RVTaskSeviceLi
         return taskServiceList.size();
     }
 
+    /**
+     * Describe 1 object from list.
+     */
     public class TaskServiceHolder extends RecyclerView.ViewHolder {
         private TextView task_service_name;
         private Switch task_service_flag;
+        /**
+         * keep elemnet position of list.
+         */
+        private int position;
 
-        public TaskServiceHolder(View itemView) {
+        public TaskServiceHolder(final View itemView) {
             super(itemView);
             task_service_name = (TextView) itemView.findViewById(R.id.card_view_task_service_name);
             task_service_flag = (Switch) itemView.findViewById(R.id.card_view_task_service_switch);
-
+            task_service_flag.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked){
+                        itemClickListener.onItemClickRVTaskServiceListAdapter(position,isChecked);
+                    } else {
+                        itemClickListener.onItemClickRVTaskServiceListAdapter(position,isChecked);
+                    }
+                }
+            });
         }
     }
 }

@@ -23,9 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.DetailTicketActivity"/>
+        <activity android:name=".View.DetailTicketActivity"/>
         <activity
-                android:name=".Activities.TaskListActivity"
+                android:name=".View.TaskListActivity"
                 android:label="@string/title_activity_task_list"
                 android:theme="@style/AppTheme">
         </activity>

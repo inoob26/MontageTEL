@@ -1,15 +1,9 @@
 package com.tel.inoob.montagtel.Controller;
 
-import android.content.Context;
+
 import com.tel.inoob.montagtel.Model.Task;
 import com.tel.inoob.montagtel.Model.TaskService;
 import com.tel.inoob.montagtel.Tools.Deserialize;
-import io.reactivex.*;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,7 +25,7 @@ public class TicketController {
         Date today = new Date();
 
         try {
-            today = dateFormat.parse("2017.06.26");
+            today = dateFormat.parse("2017.07.01");
         } catch (ParseException e) {
             e.printStackTrace();
         }

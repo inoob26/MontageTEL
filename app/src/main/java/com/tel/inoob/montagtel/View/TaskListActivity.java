@@ -1,6 +1,7 @@
-package com.tel.inoob.montagtel.Activities;
+package com.tel.inoob.montagtel.View;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,8 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 import com.tel.inoob.montagtel.R;
-
-import java.util.List;
 
 public class TaskListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -87,7 +86,7 @@ public class TaskListActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
