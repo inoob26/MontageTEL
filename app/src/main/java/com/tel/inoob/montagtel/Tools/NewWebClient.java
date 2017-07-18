@@ -57,11 +57,12 @@ public class NewWebClient {
      *
      * @param json get json object for close task.
      */
-    public void closeTask(final int task_id,final String json){
+    public void closeTask(final String json){
         String result = "";
         OkHttpSendHandler handler = new OkHttpSendHandler();
         try {
-            result = handler.execute(CLOSE_TASK_PATH + "(" + task_id + "," + json + ")",json).get();
+            //result = handler.execute(CLOSE_TASK_PATH + "(" + task_id + "," + json + ")",json).get();
+            result = handler.execute(CLOSE_TASK_PATH,json).get();
             Log.i(TAG, "closeTask Result " + result);
         } catch (InterruptedException e) {
             Log.e(TAG, "closeTask InterruptedException " + e.getMessage());
@@ -106,9 +107,6 @@ public class NewWebClient {
                 response = client.newCall(request).execute();
                 result = response.body().string();
                 Log.i(TAG,"execute");
-                Log.i(TAG,"Result "+ result);
-                Log.i(TAG,"Compare " + result.compareTo(BAD_REQUEST));
-                Log.i(TAG,"Bad request " + BAD_REQUEST);
                 /*
                 if (result.compareTo(BAD_REQUEST)){
                     Log.i(TAG,"equals");

@@ -6,7 +6,6 @@ import com.google.gson.GsonBuilder;
 import com.tel.inoob.montagtel.Deserialize.*;
 import com.tel.inoob.montagtel.Model.*;
 import com.tel.inoob.montagtel.Model.Error;
-import com.tel.inoob.montagtel.Tools.NewWebClient;
 import java.util.List;
 
 /**
@@ -71,8 +70,6 @@ public class Deserialize {
                 .registerTypeAdapter(Role.class, new RoleDeserializer())
                 .registerTypeAdapter(User.class, new UserDeserializer())
                 .create();
-
-        System.out.println(json);
 
         User user = gson.fromJson(json, User.class);
 

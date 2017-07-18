@@ -60,7 +60,7 @@ class TaskService {
     }
 
     override fun toString(): String {
-        return "{\"Id\": $id, \"IsBreak\": $isBreak, \"IsCompleted\": $isCompleted}"
+        return "{\"Id\": $id,\"IsBreak\": $isBreak,\"IsCompleted\": $isCompleted}"
     }
 
 

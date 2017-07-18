@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import com.tel.inoob.montagtel.Controller.RVTaskServiceListAdapter
@@ -15,6 +16,7 @@ import com.tel.inoob.montagtel.R
 import com.tel.inoob.montagtel.Tools.NewWebClient
 
 class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
+
     private var controller: TicketController? = null
     private var clientFio: TextView? = null
     private var clientPhone: TextView? = null
@@ -41,6 +43,7 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
     private fun onLoad() {
 
         val extras = intent.extras
+        val taskId: Int = extras.get("task_id") as Int
 
         task_id = findViewById(R.id.task_detail_id) as TextView
         client_id = findViewById(R.id.task_detail_client_id) as TextView
@@ -67,7 +70,11 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
          * submit task.
          */
         task_detail_submit!!.setOnClickListener {
+
+            //Serialize object
             val string: StringBuilder = StringBuilder()
+
+            string.append("{\"taskClose\":{\"TaskId\": $taskId,\"Services\": ")
 
             string.append("[")
 
@@ -76,10 +83,11 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
             }
 
             string.setLength(string.length-1)
-            string.append("]")
+            string.append("]}}")
 
+            //send to server
             var client: NewWebClient = NewWebClient()
-            client.closeTask(extras.get("task_id") as Int,string.toString())
+            client.closeTask(string.toString())
         }
 
         task_detail_lbl_for_device_sum = findViewById(R.id.task_detail_lbl_for_device_sum) as TextView
@@ -95,7 +103,7 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
         start_time!!.text = extras.get("task_detail_time").toString()
         user_id = extras.get("user_id") as Int
 
-        initializeRecycleView(extras.get("task_id") as Int)
+        initializeRecycleView(taskId)
     }
 
     private fun initializeRecycleView(task_id: Int) {
@@ -160,5 +168,6 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
          * Layout.
          */
         private val LAYOUT = R.layout.activity_detail_ticket
+        private val TAG = DetailTicketActivity::class.java.simpleName
     }
 }

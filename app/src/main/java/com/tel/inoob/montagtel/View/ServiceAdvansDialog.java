@@ -26,13 +26,13 @@ public class ServiceAdvansDialog extends DialogFragment {
      * Fields
      */
     private RecyclerView recycle_view_service_advans;
-    Communicator communicator;
+    RecyclerOnItemClickListener communicator;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        communicator = (Communicator) context;
+        communicator = (RecyclerOnItemClickListener) context;
     }
 
     public ServiceAdvansDialog(){
@@ -57,12 +57,5 @@ public class ServiceAdvansDialog extends DialogFragment {
         recycle_view_service_advans.setAdapter(advansAdapter);
 
         return view;
-    }
-
-    /**
-     * Interface implements communication between RecycleView and dialog.
-     */
-    public interface Communicator {
-        void addServiceAdvansToList();
     }
 }
