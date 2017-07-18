@@ -12,6 +12,7 @@ import com.tel.inoob.montagtel.Controller.RVTaskServiceListAdapter
 import com.tel.inoob.montagtel.Controller.TicketController
 import com.tel.inoob.montagtel.Model.TaskService
 import com.tel.inoob.montagtel.R
+import com.tel.inoob.montagtel.Tools.NewWebClient
 
 class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
     private var controller: TicketController? = null
@@ -38,6 +39,9 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
     private var list : MutableList<TaskService>? = null
 
     private fun onLoad() {
+
+        val extras = intent.extras
+
         task_id = findViewById(R.id.task_detail_id) as TextView
         client_id = findViewById(R.id.task_detail_client_id) as TextView
         clientFio = findViewById(R.id.ticket_detail_client_fio) as TextView
@@ -63,9 +67,6 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
          * submit task.
          */
         task_detail_submit!!.setOnClickListener {
-            println("SUBMIT!!!!!!!")
-            println("---------------------------------------")
-
             val string: StringBuilder = StringBuilder()
 
             string.append("[")
@@ -77,15 +78,14 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
             string.setLength(string.length-1)
             string.append("]")
 
-            println(string.toString())
-
-            println("---------------------------------------")
+            var client: NewWebClient = NewWebClient()
+            client.closeTask(extras.get("task_id") as Int,string.toString())
         }
 
         task_detail_lbl_for_device_sum = findViewById(R.id.task_detail_lbl_for_device_sum) as TextView
         task_detail_lbl_pay_total_sum = findViewById(R.id.task_detail_lbl_pay_total_sum) as TextView
 
-        val extras = intent.extras
+
 
         clientFio!!.text = extras.get("clientFio") as String
         clientPhone!!.text = extras.get("clientPhone") as String

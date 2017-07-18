@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 import com.tel.inoob.montagtel.Deserialize.*;
 import com.tel.inoob.montagtel.Model.*;
 import com.tel.inoob.montagtel.Model.Error;
+import com.tel.inoob.montagtel.Tools.NewWebClient;
 import java.util.List;
 
 /**
@@ -129,8 +130,7 @@ public class Deserialize {
     }
 
     public String getJson(final String path){
-        WebClient webClient = new WebClient(path);
-
-        return webClient.getJSON();
+        NewWebClient webClient = new NewWebClient();
+        return webClient.getDataFromUrl(path);
     }
 }
