@@ -26,13 +26,10 @@ public class ServiceAdvansDialog extends DialogFragment {
      * Fields
      */
     private RecyclerView recycle_view_service_advans;
-    //RVOnClickFromServiceAdvans itemClickListener;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
-        //itemClickListener = (RVOnClickFromServiceAdvans) context;
     }
 
     public ServiceAdvansDialog(){
@@ -53,12 +50,10 @@ public class ServiceAdvansDialog extends DialogFragment {
 
         Deserialize deserialize = new Deserialize();
 
-        //RVServiceAdvansAdapter advansAdapter = new RVServiceAdvansAdapter(deserialize.deserializeServiceAdvans(args.getInt("user_id")),itemClickListener);
-        RVServiceAdvansAdapter advansAdapter = new RVServiceAdvansAdapter(deserialize.deserializeServiceAdvans(args.getInt("user_id")));
+        RVServiceAdvansAdapter advansAdapter = new RVServiceAdvansAdapter(deserialize.deserializeServiceAdvans(args.getInt("user_id")), getDialog());
         advansAdapter.setTaskId(args.getInt("task_id"));
 
         recycle_view_service_advans.setAdapter(advansAdapter);
-
         return view;
     }
 }

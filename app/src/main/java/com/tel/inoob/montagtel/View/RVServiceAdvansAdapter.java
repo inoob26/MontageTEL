@@ -1,5 +1,6 @@
 package com.tel.inoob.montagtel.View;
 
+import android.app.Dialog;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,9 +23,12 @@ public class RVServiceAdvansAdapter extends RecyclerView.Adapter<RVServiceAdvans
 
     private List<ServiceAdvans> list;
     private int taskId;
+    //dialog need for close ServiceAdvansDialog
+    private Dialog dialog;
 
-    public RVServiceAdvansAdapter(List<ServiceAdvans> list){
+    public RVServiceAdvansAdapter(List<ServiceAdvans> list, Dialog dialog){
         this.list = list;
+        this.dialog = dialog;
     }
 
     @Override
@@ -44,6 +48,8 @@ public class RVServiceAdvansAdapter extends RecyclerView.Adapter<RVServiceAdvans
 
         holder.taskId = taskId;
         holder.serviceTemplateId = list.get(position).getId();
+
+        holder.dialog = dialog;
     }
 
     @Override
@@ -73,12 +79,17 @@ public class RVServiceAdvansAdapter extends RecyclerView.Adapter<RVServiceAdvans
     public static class ServiceAdvansViewHolder extends RecyclerView.ViewHolder{
         private TextView recycle_view_service_advans_name;
         private int taskId;
+        /**
+         * field serviceTemplateId it is taskId.
+         * serviceTemplateId uses for correct add into task.
+         */
         private int serviceTemplateId;
         private int quantity;
         private int tarifId;
+        private Dialog dialog;
 
 
-        public ServiceAdvansViewHolder(View itemView){
+        public ServiceAdvansViewHolder(final View itemView){
             super(itemView);
             recycle_view_service_advans_name = (TextView) itemView.findViewById(R.id.card_view_service_advans_name);
 
@@ -99,6 +110,8 @@ public class RVServiceAdvansAdapter extends RecyclerView.Adapter<RVServiceAdvans
                     //send json to server
                     NewWebClient client = new NewWebClient();
                     client.addServiceToTask(stringBuilder.toString());
+                    //close ServiceAdvansDialog
+                    dialog.dismiss();
                 }
             });
         }
