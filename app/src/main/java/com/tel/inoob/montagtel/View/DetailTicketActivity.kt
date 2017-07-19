@@ -16,7 +16,6 @@ import com.tel.inoob.montagtel.R
 import com.tel.inoob.montagtel.Tools.NewWebClient
 
 class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
-
     private var controller: TicketController? = null
     private var clientFio: TextView? = null
     private var clientPhone: TextView? = null
@@ -89,6 +88,8 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
             //send to server
             var client: NewWebClient = NewWebClient()
             client.closeTask(string.toString())
+            //close this Activity
+            finish()
         }
 
         task_detail_lbl_for_device_sum = findViewById(R.id.task_detail_lbl_for_device_sum) as TextView

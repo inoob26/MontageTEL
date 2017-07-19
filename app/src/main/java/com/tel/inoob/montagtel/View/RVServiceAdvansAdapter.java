@@ -98,7 +98,6 @@ public class RVServiceAdvansAdapter extends RecyclerView.Adapter<RVServiceAdvans
                 public void onClick(View v) {
                     //serialize data for add service to task
                     StringBuilder  stringBuilder = new StringBuilder();
-
                     stringBuilder.append("{ \"model\":" +
                             "{\"TaskId\": " + taskId + "," +
                             "\"Services\": [ " +
