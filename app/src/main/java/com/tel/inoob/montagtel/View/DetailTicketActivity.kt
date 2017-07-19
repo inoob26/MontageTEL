@@ -59,6 +59,7 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
             val serviceAdvansDialog = ServiceAdvansDialog()
             val args  = Bundle()
             args.putInt("user_id",user_id)
+            args.putInt("task_id",taskId)
             serviceAdvansDialog.arguments = args
             serviceAdvansDialog.show(supportFragmentManager,"Выбор доп услуги")
         }

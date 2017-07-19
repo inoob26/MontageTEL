@@ -24,12 +24,14 @@ class ServiceAdvansDeserializer : JsonDeserializer<ServiceAdvans> {
             serviceAdvans.serviceName = jsonObj.get("ServiceName").asString
             serviceAdvans.isCompleted = jsonObj.get("IsCompleted").asBoolean
             serviceAdvans.quantity = jsonObj.get("Quantity").asInt
+            serviceAdvans.tarifId = jsonObj.get("TarifId").asInt
             serviceAdvans.price = jsonObj.get("Price").asDouble
         } else {
             serviceAdvans.id = 0
             serviceAdvans.serviceName = ""
             serviceAdvans.isCompleted = false
-            serviceAdvans.quantity = -1
+            serviceAdvans.quantity = 1
+            serviceAdvans.tarifId = 0
             serviceAdvans.price = 0.0
         }
 

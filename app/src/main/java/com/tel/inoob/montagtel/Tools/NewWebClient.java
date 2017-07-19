@@ -21,7 +21,17 @@ public class NewWebClient {
 
     //http://10.192.25.4:9190/mobile/CloseTask(int taskId, [ {  Id, IsBreak, IsCompleted} ])
     private static final String CLOSE_TASK_PATH = "http://10.192.25.4:9190/mobile/CloseTask";
+    /**
+     * {"model":{"TaskId":26647,
+     * "Services":[
+     * {
+     *  "ServiceTemplateId": int(число),
+     *  "TarifId":int(число),
+     *  "Quantity":int(число)}
+     * ]}}
 
+     */
+    private static final String ADD_ADDITIONAL_TASK = "http://10.192.25.4:9190/mobile/AddServiceToTask";
 
 
     /**
@@ -69,6 +79,21 @@ public class NewWebClient {
         } catch (ExecutionException e) {
             Log.e(TAG, "closeTask ExecutionException " + e.getMessage());
         }finally {
+            handler.cancel(true);
+        }
+    }
+
+    public void addServiceToTask(final String json){
+        String result = "";
+        OkHttpSendHandler handler = new OkHttpSendHandler();
+        try {
+            result = handler.execute(ADD_ADDITIONAL_TASK,json).get();
+            Log.i(TAG, "addServiceToTask Result " + result);
+        } catch (InterruptedException e) {
+            Log.e(TAG, "closeTask InterruptedException " + e.getMessage());
+        } catch (ExecutionException e) {
+            Log.e(TAG, "closeTask ExecutionException " + e.getMessage());
+        } finally {
             handler.cancel(true);
         }
     }

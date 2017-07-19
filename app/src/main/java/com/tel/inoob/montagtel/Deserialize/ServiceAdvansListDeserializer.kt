@@ -24,6 +24,7 @@ class ServiceAdvansListDeserializer: JsonDeserializer<ServiceAdvansList> {
                                 temp.get("ServiceName").asString,
                                 temp.get("IsCompleted").asBoolean,
                                 temp.get("Quantity").asInt,
+                                temp.get("TarifId").asInt,
                                 temp.get("Price").asDouble)
                 )
             }
@@ -32,7 +33,7 @@ class ServiceAdvansListDeserializer: JsonDeserializer<ServiceAdvansList> {
             var serviceAdvans: ServiceAdvansList = ServiceAdvansList()
 
             serviceAdvans.addServiceAdvans(
-                    ServiceAdvans(0, "", false, -1, 0.0)
+                    ServiceAdvans(0, "", false, -1,0, 0.0)
             )
 
             return serviceAdvans
