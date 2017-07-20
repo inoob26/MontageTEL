@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.tel.inoob.montagtel.Controller.TicketController;
+import com.tel.inoob.montagtel.Model.Error;
 import com.tel.inoob.montagtel.Model.Task;
 import com.tel.inoob.montagtel.R;
+import com.tel.inoob.montagtel.Tools.Deserialize;
 
 import java.util.List;
 
@@ -45,7 +47,7 @@ public class GraphicFragment extends Fragment {
         user_id = args.getInt(ARG_PARAM1);
 
         controller = new TicketController();
-        listOfTask = controller.getListOfTask(user_id);
+        listOfTask = controller.getListOfTask(user_id,getContext());
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rv);
 

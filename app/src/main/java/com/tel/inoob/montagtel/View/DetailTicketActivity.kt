@@ -115,7 +115,7 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
         recyclerView_task_service_list!!.layoutManager = linearLayoutManager
 
         controller = TicketController()
-        list = controller!!.getListOfTaskService(task_id)
+        list = controller!!.getListOfTaskService(task_id, applicationContext)
 
         var device_sum = 0.0
         var total_sum = 0.0

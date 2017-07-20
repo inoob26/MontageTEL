@@ -17,4 +17,9 @@
         <item name="cardBackgroundColor">@color/status_color_red</item>
     </style>
 
+    <!--Alert Dialog-->
+    <style name="myDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
 </resources>

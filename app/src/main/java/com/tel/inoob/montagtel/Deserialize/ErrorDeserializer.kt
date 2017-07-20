@@ -7,7 +7,6 @@ import java.lang.reflect.Type
 
 /**
  * @author inoob
- * *
  * @since 0.1
  */
 class ErrorDeserializer : JsonDeserializer<Error> {
@@ -15,15 +14,17 @@ class ErrorDeserializer : JsonDeserializer<Error> {
     override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): Error {
         val error = Error()
 
+        if(json.isJsonObject){
             val jsonObject = json.asJsonObject
-
             val element = jsonObject.get("ErrorCode")
             if (element == null) {
                 return error
             } else {
                 error.errorCode = jsonObject.get("ErrorCode").asInt
                 error.errorMsg = jsonObject.get("ErrorMessage").asString
+                error.toLogin = jsonObject.get("ToLogin").asInt
             }
+        }
 
         return error
     }

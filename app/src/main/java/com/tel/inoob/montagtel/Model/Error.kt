@@ -7,8 +7,8 @@ package com.tel.inoob.montagtel.Model
  * *
  * @since 0.1
  */
-class Error {
-
+class Error(var errorCode: Int = 0, var errorMsg: String? = "It is OK", var toLogin: Int = 0) {
+/*
     var errorCode: Int = 0
     var errorMsg: String? = null
 
@@ -16,4 +16,5 @@ class Error {
         this.errorCode = -1
         this.errorMsg = "It is OK"
     }
+    */
 }

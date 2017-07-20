@@ -25,28 +25,35 @@ public class Deserialize {
     private final static String D_TASK_SERVICE_PATH = "http://10.192.25.4:9190/mobile/ServiceByTask?id=";
     private final static String D_SERVICE_ADVANS_PATH = "http://10.192.25.4:9190/mobile/ServiceAdvans?userid=";
 
-    public int deserializeLoginPasswod(final String login, final  String password) {
+    public Error deserializeLoginPassword(final String login, final  String password) {
         String json = getJson(D_LOGIN_PASSWORD_PATH + login + "&password=" + password);
-
-        int result;
 
         Error error = deserializeError(json);
 
-        if(error.getErrorCode() == -1){
-            result = deserializeUser(json);
-            return result;
-        } else {
-            return error.getErrorCode();
-        }
+        return error;
+    }
+
+    public Error deserializeError(final String json){
+
+        Error error = new Error();
+
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Error.class, new ErrorDeserializer())
+                .create();
+
+        error = gson.fromJson(json,Error.class);
+
+        return error;
     }
 
     /**
      * Deserialize Error Object.
      *
-     * @param json path.
      * @return error object.
      */
-    public Error deserializeError(final String json){
+    public Error deserializeErrorForTask(final int user_id, final String date){
+        String json = getJson(D_TASK_PATH + user_id + "&date=" + date);
+
         Error error = new Error();
 
         Gson gson = new GsonBuilder()
@@ -61,10 +68,11 @@ public class Deserialize {
     /**
      * Deserialize User object from webService.
      *
-     * @param json path.
      * @return user id.
      */
-    private int deserializeUser(final String json) {
+    public int deserializeUser(final String login, final  String password) {
+
+        String json = getJson(D_LOGIN_PASSWORD_PATH + login + "&password=" + password);
 
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Role.class, new RoleDeserializer())
@@ -110,6 +118,17 @@ public class Deserialize {
         TaskServiceList taskServiceList = gson.fromJson(getJson(D_TASK_SERVICE_PATH + task_id), TaskServiceList.class);
 
         return taskServiceList.getList();
+    }
+
+    public Error deserializeErrorTaskService(final int task_id){
+
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Error.class, new ErrorDeserializer())
+                .create();
+
+        Error error = gson.fromJson(getJson(D_TASK_SERVICE_PATH + task_id),Error.class);
+
+        return error;
     }
 
     public List<ServiceAdvans> deserializeServiceAdvans(final int user_id){

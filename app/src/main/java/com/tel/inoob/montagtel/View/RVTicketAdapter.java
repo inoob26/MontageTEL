@@ -95,22 +95,24 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
             taskAddress = (TextView) itemView.findViewById(R.id.taskAddress);
             taskStart = (TextView) itemView.findViewById(R.id.task_start);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent detail_ticket = new Intent(v.getContext(),DetailTicketActivity.class);
+            if (task_id > 0){
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent detail_ticket = new Intent(v.getContext(),DetailTicketActivity.class);
 
-                    detail_ticket.putExtra("clientFio",clientFio.getText());
-                    detail_ticket.putExtra("clientPhone",clientPhone.getText());
-                    detail_ticket.putExtra("taskAddress",taskAddress.getText());
-                    detail_ticket.putExtra("task_id",task_id);
-                    detail_ticket.putExtra("client_id",client_id);
-                    detail_ticket.putExtra("task_detail_time",taskStart.getText());
-                    detail_ticket.putExtra("user_id",user_id);
+                        detail_ticket.putExtra("clientFio",clientFio.getText());
+                        detail_ticket.putExtra("clientPhone",clientPhone.getText());
+                        detail_ticket.putExtra("taskAddress",taskAddress.getText());
+                        detail_ticket.putExtra("task_id",task_id);
+                        detail_ticket.putExtra("client_id",client_id);
+                        detail_ticket.putExtra("task_detail_time",taskStart.getText());
+                        detail_ticket.putExtra("user_id",user_id);
 
-                    v.getContext().startActivity(detail_ticket);
-                }
-            });
+                        v.getContext().startActivity(detail_ticket);
+                    }
+                });
+            }
         }
     }
 }

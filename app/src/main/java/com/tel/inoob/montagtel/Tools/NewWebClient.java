@@ -177,7 +177,7 @@ public class NewWebClient {
             try {
                 response = client.newCall(request).execute();
                 result = response.body().string();
-                //Log.i(TAG,"Result " + result);
+                Log.i(TAG,"Result " + result);
             } catch (IOException e) {
                 //e.printStackTrace();
                 Log.e(TAG, "IOException " + e.getMessage());
