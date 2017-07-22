@@ -25,6 +25,7 @@
     <string name="task_detail_exclude_task">"Кроме задач"</string>
     <string name="task_detail_additional_service">"Доп услуги и работы"</string>
     <string name="task_detail_material">"Расходные материалы"</string>
+    <string name="task_detail_consumable_by_task">"Добавить расходные материалы"</string>
     <string name="task_detail_pay">"Оплата"</string>
     <string name="task_detail_pay_for_additional_service">"За доп услуги и работы: "</string>
     <string name="task_detail_sum">"0 руб"</string>
@@ -61,5 +62,8 @@
     <string name="action_settings">Settings</string>
     <!-- Service Advans-->
     <string name="service_advans_name">"Протяжка кабеля"</string>
+    <!-- Consume Fragment -->
+    <string name="consume_name">"Consume name"</string>
+    <string name="consume_add_btn">"Добавить в заявку"</string>
 
 </resources>

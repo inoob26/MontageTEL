@@ -35,6 +35,18 @@ public class NewWebClient {
 
 
     /**
+     * get data for ConsumablesByTask
+     */
+    private static final String GET_CONSUMABLES_BY_TASK = "http://10.192.25.4:9190/mobile/ConsumablesByTask?id=";
+    //http://10.192.25.4:9190/mobile/ConsumablesByTask?id=830
+
+
+    /**
+     * send data to server for AddConsumablesToTask
+     */
+    private static final String ADD_CONSUMABLES_TO_TASK_PATH = "http://10.192.25.4:9190/mobile/AddConsumablesToTask";
+
+    /**
      * media type.
      */
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
@@ -90,9 +102,24 @@ public class NewWebClient {
             result = handler.execute(ADD_ADDITIONAL_TASK,json).get();
             Log.i(TAG, "addServiceToTask Result " + result);
         } catch (InterruptedException e) {
-            Log.e(TAG, "closeTask InterruptedException " + e.getMessage());
+            Log.e(TAG, "addServiceToTask InterruptedException " + e.getMessage());
         } catch (ExecutionException e) {
-            Log.e(TAG, "closeTask ExecutionException " + e.getMessage());
+            Log.e(TAG, "addServiceToTask ExecutionException " + e.getMessage());
+        } finally {
+            handler.cancel(true);
+        }
+    }
+
+    public void addConsumablesToTask(final String json){
+        String result = "";
+        OkHttpSendHandler handler = new OkHttpSendHandler();
+        try {
+            result = handler.execute(ADD_CONSUMABLES_TO_TASK_PATH,json).get();
+            Log.i(TAG, "addConsumablesToTask Result " + result);
+        } catch (InterruptedException e) {
+            Log.e(TAG, "addConsumablesToTask InterruptedException " + e.getMessage());
+        } catch (ExecutionException e) {
+            Log.e(TAG, "addServiceToTask ExecutionException " + e.getMessage());
         } finally {
             handler.cancel(true);
         }

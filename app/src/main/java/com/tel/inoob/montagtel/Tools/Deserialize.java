@@ -25,25 +25,27 @@ public class Deserialize {
     private final static String D_TASK_SERVICE_PATH = "http://10.192.25.4:9190/mobile/ServiceByTask?id=";
     private final static String D_SERVICE_ADVANS_PATH = "http://10.192.25.4:9190/mobile/ServiceAdvans?userid=";
 
+    private static final String GET_CONSUMABLES_BY_TASK = "http://10.192.25.4:9190/mobile/ConsumablesByTask?id=";
+
     public Error deserializeLoginPassword(final String login, final  String password) {
         String json = getJson(D_LOGIN_PASSWORD_PATH + login + "&password=" + password);
 
-        Error error = deserializeError(json);
+        //Error error = deserializeError(json);
 
-        return error;
+        return deserializeError(json);
     }
 
     public Error deserializeError(final String json){
 
-        Error error = new Error();
+        //Error error = new Error();
 
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Error.class, new ErrorDeserializer())
                 .create();
 
-        error = gson.fromJson(json,Error.class);
+        //error = gson.fromJson(json,Error.class);
 
-        return error;
+        return gson.fromJson(json,Error.class);
     }
 
     /**
@@ -54,15 +56,15 @@ public class Deserialize {
     public Error deserializeErrorForTask(final int user_id, final String date){
         String json = getJson(D_TASK_PATH + user_id + "&date=" + date);
 
-        Error error = new Error();
+        //Error error = new Error();
 
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Error.class, new ErrorDeserializer())
                 .create();
 
-        error = gson.fromJson(json,Error.class);
+        //error = gson.fromJson(json,Error.class);
 
-        return error;
+        return gson.fromJson(json,Error.class);
     }
 
     /**
@@ -126,9 +128,9 @@ public class Deserialize {
                 .registerTypeAdapter(Error.class, new ErrorDeserializer())
                 .create();
 
-        Error error = gson.fromJson(getJson(D_TASK_SERVICE_PATH + task_id),Error.class);
+        //Error error = gson.fromJson(getJson(D_TASK_SERVICE_PATH + task_id),Error.class);
 
-        return error;
+        return gson.fromJson(getJson(D_TASK_SERVICE_PATH + task_id),Error.class);
     }
 
     public List<ServiceAdvans> deserializeServiceAdvans(final int user_id){
@@ -143,6 +145,19 @@ public class Deserialize {
         ServiceAdvansList serviceAdvansList = gson.fromJson(json, ServiceAdvansList.class);
 
         return serviceAdvansList.getList();
+    }
+
+    public List<ConsumableByTask> deserializeConsumableByTask(final int user_id){
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(ConsumableByTask.class, new ConsumableByTaskDeserializer())
+                .registerTypeAdapter(ConsumableByTaskList.class,new ConsumableByTaskListDeserializer())
+                .create();
+
+        String json = getJson(GET_CONSUMABLES_BY_TASK + user_id);
+
+        ConsumableByTaskList list = gson.fromJson(json,ConsumableByTaskList.class);
+
+        return list.getList();
     }
 
     public String getJson(final String path){

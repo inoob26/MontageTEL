@@ -24,12 +24,15 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
     private var client_id: TextView? = null
     private var start_time: TextView? = null
     private var recyclerView_task_service_list: RecyclerView? = null
+    //private var recycleView_consume: RecyclerView? = null
+
 
     /**
      * user id.
      */
     private var user_id: Int = 0
     private var task_detail_btn_add_task_service: Button? = null
+    private var task_detail_add_consumable_by_task: Button? = null
     private var task_detail_submit: Button? = null
     private var task_detail_lbl_for_device_sum: TextView? = null
     private var task_detail_lbl_pay_total_sum: TextView? = null
@@ -51,6 +54,7 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
         taskAddress = findViewById(R.id.ticket_detail_task_address) as TextView
         start_time = findViewById(R.id.task_detail_time) as TextView
         task_detail_btn_add_task_service = findViewById(R.id.task_detail_btn_add_task_service) as Button
+
         /**
          * open DialogFragment for adding additional task service.
          */
@@ -63,6 +67,17 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
             serviceAdvansDialog.show(supportFragmentManager,"Выбор доп услуги")
         }
 
+
+        task_detail_add_consumable_by_task = findViewById(R.id.task_detail_add_consumable_by_task) as Button
+
+        task_detail_add_consumable_by_task!!.setOnClickListener {
+            val consumableActivity: Intent = Intent(applicationContext,ConsumablesByTaskActivity::class.java)
+            consumableActivity.putExtra("userId",user_id)
+            consumableActivity.putExtra("taskId",taskId)
+            consumableActivity.putExtra("client_id",extras.get("client_id").toString())
+            consumableActivity.putExtra("task_detail_time", extras.get("task_detail_time").toString())
+            startActivity(consumableActivity)
+        }
 
         task_detail_submit = findViewById(R.id.task_detail_submit) as Button
 

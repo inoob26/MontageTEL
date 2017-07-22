@@ -76,7 +76,7 @@ public class TicketController {
     }
 
     private void checkErrorLoginCode(Error error, Context context){
-        if(error.getToLogin() == 0){
+        if(error.getToLogin() == 0 && !error.getErrorMsg().equals("It is OK")){
             showErrorMessage(context,error.getErrorMsg());
         } else if (error.getToLogin() == 1){
             showLoginForm(context);

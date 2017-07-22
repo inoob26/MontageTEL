@@ -24,6 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".View.DetailTicketActivity"/>
+        <activity android:name=".View.ConsumablesByTaskActivity" />
         <activity
                 android:name=".View.TaskListActivity"
                 android:label="@string/title_activity_task_list"

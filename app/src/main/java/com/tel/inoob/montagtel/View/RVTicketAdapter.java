@@ -37,9 +37,13 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
 
     @Override
     public void onBindViewHolder(TicketViewHolder holder, int position) {
-        holder.idTask.setText("№" + listOfTask.get(position).getId());
+        String placeholder1 = "№" + listOfTask.get(position).getId();
 
-        holder.clientId.setText("ID " + listOfTask.get(position).getClientId());
+        holder.idTask.setText(placeholder1);
+
+        String placeholder2 = "ID " + listOfTask.get(position).getClientId();
+
+        holder.clientId.setText(placeholder2);
         holder.taskStart.setText(listOfTask.get(position).getStartDateTime());
 
         holder.taskAddress.setText(listOfTask.get(position).getObjectName()
@@ -95,7 +99,7 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
             taskAddress = (TextView) itemView.findViewById(R.id.taskAddress);
             taskStart = (TextView) itemView.findViewById(R.id.task_start);
 
-            if (task_id > 0){
+            //if (task_id > 0){
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -112,7 +116,7 @@ public class RVTicketAdapter extends RecyclerView.Adapter<RVTicketAdapter.Ticket
                         v.getContext().startActivity(detail_ticket);
                     }
                 });
-            }
+            //}
         }
     }
 }
