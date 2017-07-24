@@ -46,10 +46,10 @@ public class ConsumablesByTaskActivity extends AppCompatActivity{
         consume_toolbar_time.setText(extras.get("task_detail_time").toString());
         //Content
         addConsume_to_task_btn = (Button) findViewById(R.id.addConsume_to_task_btn);
-        initRecyclerView((int) extras.get("userId"),(int) extras.get("taskId"));
+        initRecyclerView((int) extras.get("taskId"));
     }
 
-    private void initRecyclerView(int user_id, int task_id){
+    private void initRecyclerView(final int task_id){
         recyclerView = (RecyclerView) findViewById(R.id.recycler_consume);
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
@@ -57,7 +57,7 @@ public class ConsumablesByTaskActivity extends AppCompatActivity{
 
         Deserialize deserialize = new Deserialize();
 
-        RVConsumeAdapter adapter = new RVConsumeAdapter(deserialize.deserializeConsumableByTask(user_id));
+        RVConsumeAdapter adapter = new RVConsumeAdapter(deserialize.deserializeConsumableByTask(task_id));
         adapter.setTaskId(task_id);
         recyclerView.setAdapter(adapter);
     }

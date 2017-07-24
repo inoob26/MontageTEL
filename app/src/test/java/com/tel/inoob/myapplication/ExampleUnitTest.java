@@ -1,4 +1,4 @@
-package com.tel.inoob.montagtel;
+package com.tel.inoob.myapplication;
 
 import org.junit.Test;
 

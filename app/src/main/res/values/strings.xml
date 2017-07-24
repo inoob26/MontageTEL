@@ -65,5 +65,6 @@
     <!-- Consume Fragment -->
     <string name="consume_name">"Consume name"</string>
     <string name="consume_add_btn">"Добавить в заявку"</string>
+    <string name="consume_count">"0"</string>
 
 </resources>

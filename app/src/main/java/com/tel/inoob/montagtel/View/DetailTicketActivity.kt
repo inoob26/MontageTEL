@@ -9,10 +9,13 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import com.tel.inoob.montagtel.Controller.RVConsumeAdapterForTaskDetail
 import com.tel.inoob.montagtel.Controller.RVTaskServiceListAdapter
 import com.tel.inoob.montagtel.Controller.TicketController
+import com.tel.inoob.montagtel.Model.ConsumableByTask
 import com.tel.inoob.montagtel.Model.TaskService
 import com.tel.inoob.montagtel.R
+import com.tel.inoob.montagtel.Tools.Deserialize
 import com.tel.inoob.montagtel.Tools.NewWebClient
 
 class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
@@ -24,13 +27,14 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
     private var client_id: TextView? = null
     private var start_time: TextView? = null
     private var recyclerView_task_service_list: RecyclerView? = null
-    //private var recycleView_consume: RecyclerView? = null
+    private var recycleView_consume: RecyclerView? = null
 
 
     /**
      * user id.
      */
     private var user_id: Int = 0
+    private var task_id_number: Int = 0
     private var task_detail_btn_add_task_service: Button? = null
     private var task_detail_add_consumable_by_task: Button? = null
     private var task_detail_submit: Button? = null
@@ -42,10 +46,12 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
      */
     private var list : MutableList<TaskService>? = null
 
+    private var listOfConsumable : MutableList<ConsumableByTask>? = null
+
     private fun onLoad() {
 
         val extras = intent.extras
-        val taskId: Int = extras.get("task_id") as Int
+        this.task_id_number = extras.get("task_id") as Int
 
         task_id = findViewById(R.id.task_detail_id) as TextView
         client_id = findViewById(R.id.task_detail_client_id) as TextView
@@ -62,7 +68,7 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
             val serviceAdvansDialog = ServiceAdvansDialog()
             val args  = Bundle()
             args.putInt("user_id",user_id)
-            args.putInt("task_id",taskId)
+            args.putInt("task_id",task_id_number)
             serviceAdvansDialog.arguments = args
             serviceAdvansDialog.show(supportFragmentManager,"Выбор доп услуги")
         }
@@ -72,8 +78,8 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
 
         task_detail_add_consumable_by_task!!.setOnClickListener {
             val consumableActivity: Intent = Intent(applicationContext,ConsumablesByTaskActivity::class.java)
-            consumableActivity.putExtra("userId",user_id)
-            consumableActivity.putExtra("taskId",taskId)
+            //consumableActivity.putExtra("userId",user_id)
+            consumableActivity.putExtra("taskId",task_id_number)
             consumableActivity.putExtra("client_id",extras.get("client_id").toString())
             consumableActivity.putExtra("task_detail_time", extras.get("task_detail_time").toString())
             startActivity(consumableActivity)
@@ -89,7 +95,7 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
             //Serialize object
             val string: StringBuilder = StringBuilder()
 
-            string.append("{\"taskClose\":{\"TaskId\": $taskId,\"Services\": ")
+            string.append("{\"taskClose\":{\"TaskId\": $task_id_number,\"Services\": ")
 
             string.append("[")
 
@@ -120,7 +126,7 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
         start_time!!.text = extras.get("task_detail_time").toString()
         user_id = extras.get("user_id") as Int
 
-        initializeRecycleView(taskId)
+        initializeRecycleView(task_id_number)
     }
 
     private fun initializeRecycleView(task_id: Int) {
@@ -155,11 +161,22 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
         recyclerView_task_service_list!!.adapter = adapter
     }
 
+    private fun initConsumeRecycleView(){
+        recycleView_consume = findViewById(R.id.recycle_view_consumable_by_task) as RecyclerView
+        recycleView_consume!!.layoutManager = LinearLayoutManager(this)
+
+        val deserialize: Deserialize = Deserialize()
+        listOfConsumable = deserialize.deserializeConsumableByTask(task_id_number)
+        val consumeAdapter: RVConsumeAdapterForTaskDetail = RVConsumeAdapterForTaskDetail(listOfConsumable)
+        recycleView_consume!!.adapter = consumeAdapter
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(LAYOUT)
         onLoad()
         initListeners()
+        initConsumeRecycleView()
     }
 
 

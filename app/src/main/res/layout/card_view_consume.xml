@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
     <android.support.v7.widget.CardView android:layout_width="match_parent"
@@ -13,14 +15,11 @@
                       android:textAlignment="textStart"
                       android:paddingTop="8dp"
                       android:layout_height="wrap_content"
-                      tools:layout_editor_absoluteY="41dp"
+                      tools:layout_editor_absoluteY="89dp"
                       app:layout_constraintLeft_toLeftOf="parent"
                       app:layout_constraintRight_toLeftOf="@+id/edit_quality"
                       android:layout_marginEnd="8dp"
                       android:layout_width="0dp"/>
-
-
-
             <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -38,14 +37,13 @@
                     app:layout_constraintRight_toLeftOf="@+id/add_cons_btn"
 
                     android:id="@+id/edit_quality"
-                    tools:layout_editor_absoluteY="25dp"
-                    tools:layout_editor_absoluteX="192dp"/>
+                    tools:layout_editor_absoluteY="73dp"
+            />
             <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@android:drawable/ic_input_add"
-                    tools:layout_editor_absoluteY="16dp"
-                    tools:layout_editor_absoluteX="261dp"
+                    tools:layout_editor_absoluteY="65dp"
                     android:id="@+id/add_cons_btn"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintLeft_toRightOf="@+id/edit_quality"/>

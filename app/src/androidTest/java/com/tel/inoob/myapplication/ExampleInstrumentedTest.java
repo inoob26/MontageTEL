@@ -1,4 +1,4 @@
-package com.tel.inoob.montagtel;
+package com.tel.inoob.myapplication;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.tel.inoob.montagtel", appContext.getPackageName());
+        assertEquals("com.tel.inoob.myapplication", appContext.getPackageName());
     }
 }

@@ -82,12 +82,6 @@ public class RVConsumeAdapter extends RecyclerView.Adapter<RVConsumeAdapter.Cons
 
                     NewWebClient client = new NewWebClient();
                     client.addConsumablesToTask(builder.toString());
-
-                    /*
-                    builder.append("{\"TaskConsumables\": {" +
-                            "\"TaskId\":" + taskId + "," +
-                            "[" + "{ \"ID\": " + id + ", \"Quantity\": "+ addQuality.getText() +" }" +
-                            "]}}");*/
                 }
             });
         }

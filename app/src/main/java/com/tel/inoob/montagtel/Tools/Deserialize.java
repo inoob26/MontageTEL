@@ -147,13 +147,13 @@ public class Deserialize {
         return serviceAdvansList.getList();
     }
 
-    public List<ConsumableByTask> deserializeConsumableByTask(final int user_id){
+    public List<ConsumableByTask> deserializeConsumableByTask(final int task_id){
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(ConsumableByTask.class, new ConsumableByTaskDeserializer())
                 .registerTypeAdapter(ConsumableByTaskList.class,new ConsumableByTaskListDeserializer())
                 .create();
 
-        String json = getJson(GET_CONSUMABLES_BY_TASK + user_id);
+        String json = getJson(GET_CONSUMABLES_BY_TASK + task_id);
 
         ConsumableByTaskList list = gson.fromJson(json,ConsumableByTaskList.class);
 
