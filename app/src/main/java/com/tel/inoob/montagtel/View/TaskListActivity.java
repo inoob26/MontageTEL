@@ -1,5 +1,6 @@
 package com.tel.inoob.montagtel.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
@@ -12,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+import com.tel.inoob.montagtel.MainScreen;
 import com.tel.inoob.montagtel.R;
 
 public class TaskListActivity extends AppCompatActivity
@@ -30,7 +32,7 @@ public class TaskListActivity extends AppCompatActivity
         user_id = (int) extras.get("userId");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Motag TEL");
+        toolbar.setTitle("MotageTEL");
         setSupportActionBar(toolbar);
 
 
@@ -115,7 +117,8 @@ public class TaskListActivity extends AppCompatActivity
         } else if (id == R.id.new_account) {
             Toast.makeText(this,"NEW_ACCOUNT",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.logout) {
-            Toast.makeText(this,"LOGOUT",Toast.LENGTH_SHORT).show();
+            Intent main = new Intent(TaskListActivity.this, MainScreen.class);
+            startActivity(main);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

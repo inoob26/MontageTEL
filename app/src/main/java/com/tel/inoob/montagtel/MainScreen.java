@@ -76,13 +76,12 @@ public class MainScreen extends AppCompatActivity {
                 } else {
                     int result = deserialize.deserializeUser(login.getText().toString(), password.getText().toString());
                     ticket.putExtra("userId",result);
-                    login.setText("");
-                    password.setText("");
                     startActivity(ticket);
                 }
                 pd.cancel();
             }
         });
+
     }
 
     @Override
@@ -90,5 +89,13 @@ public class MainScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(LAYOUT);
         init();
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        login.setText("");
+        password.setText("");
     }
 }
