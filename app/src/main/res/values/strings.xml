@@ -62,6 +62,7 @@
     <string name="action_settings">Settings</string>
     <!-- Service Advans-->
     <string name="service_advans_name">"Протяжка кабеля"</string>
+    <string name="service_advans_frame_title">"Выбор доп услуги"</string>
     <!-- Consume Fragment -->
     <string name="consume_name">"Consume name"</string>
     <string name="consume_add_btn">"Добавить в заявку"</string>

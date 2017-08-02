@@ -45,6 +45,8 @@ public class RVServiceAdvansAdapter extends RecyclerView.Adapter<RVServiceAdvans
     @Override
     public void onBindViewHolder(RVServiceAdvansAdapter.ServiceAdvansViewHolder holder, int position) {
         holder.recycle_view_service_advans_name.setText(list.get(position).getServiceName());
+        final String placeHolderPrice = Double.toString(list.get(position).getPrice()) + " руб";
+        holder.recycle_view_service_advans_price.setText(placeHolderPrice);
 
         holder.quantity = list.get(position).getQuantity();
         holder.tarifId = list.get(position).getTarifId();
@@ -82,6 +84,7 @@ public class RVServiceAdvansAdapter extends RecyclerView.Adapter<RVServiceAdvans
      */
     public static class ServiceAdvansViewHolder extends RecyclerView.ViewHolder{
         private TextView recycle_view_service_advans_name;
+        private TextView recycle_view_service_advans_price;
         private int taskId;
         /**
          * field serviceTemplateId it is taskId.
@@ -96,6 +99,7 @@ public class RVServiceAdvansAdapter extends RecyclerView.Adapter<RVServiceAdvans
         public ServiceAdvansViewHolder(final View itemView){
             super(itemView);
             recycle_view_service_advans_name = (TextView) itemView.findViewById(R.id.card_view_service_advans_name);
+            recycle_view_service_advans_price = (TextView) itemView.findViewById(R.id.card_view_service_advans_price);
 
             recycle_view_service_advans_name.setOnClickListener(new View.OnClickListener() {
                 @Override
