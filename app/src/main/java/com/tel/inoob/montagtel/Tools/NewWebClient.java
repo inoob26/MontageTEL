@@ -96,6 +96,7 @@ public class NewWebClient {
     }
 
     public void addServiceToTask(final String json){
+        Log.i(TAG,"addServiceToTask JSON: " + json);
         String result = "";
         OkHttpSendHandler handler = new OkHttpSendHandler();
         try {
@@ -206,7 +207,6 @@ public class NewWebClient {
                 result = response.body().string();
                 Log.i(TAG,"Result " + result);
             } catch (IOException e) {
-                //e.printStackTrace();
                 Log.e(TAG, "IOException " + e.getMessage());
             }
 

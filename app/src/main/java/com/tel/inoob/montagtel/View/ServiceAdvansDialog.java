@@ -27,13 +27,17 @@ public class ServiceAdvansDialog extends DialogFragment {
      */
     private RecyclerView recycle_view_service_advans;
 
+    private DetailTicketActivity detailTicketActivity;
+
+    public ServiceAdvansDialog(){}
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
     }
 
-    public ServiceAdvansDialog(){
-
+    public void setDetailTicketActivity(DetailTicketActivity detailTicketActivity) {
+        this.detailTicketActivity = detailTicketActivity;
     }
 
     @Override
@@ -50,7 +54,7 @@ public class ServiceAdvansDialog extends DialogFragment {
 
         Deserialize deserialize = new Deserialize();
 
-        RVServiceAdvansAdapter advansAdapter = new RVServiceAdvansAdapter(deserialize.deserializeServiceAdvans(args.getInt("user_id")), getDialog());
+        RVServiceAdvansAdapter advansAdapter = new RVServiceAdvansAdapter(deserialize.deserializeServiceAdvans(args.getInt("user_id")), getDialog(),this.detailTicketActivity);
         advansAdapter.setTaskId(args.getInt("task_id"));
 
         recycle_view_service_advans.setAdapter(advansAdapter);

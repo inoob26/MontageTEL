@@ -11,8 +11,8 @@ import java.util.List;
  */
 public class TaskServiceDiffCallback extends DiffUtil.Callback {
 
-    List<TaskService> oldTaskServiceList;
-    List<TaskService> newTaskServiceList;
+    private List<TaskService> oldTaskServiceList;
+    private List<TaskService> newTaskServiceList;
 
     public TaskServiceDiffCallback(List<TaskService> newTaskServiceList, List<TaskService> oldTaskServiceList){
         this.newTaskServiceList = newTaskServiceList;
@@ -29,13 +29,21 @@ public class TaskServiceDiffCallback extends DiffUtil.Callback {
         return newTaskServiceList.size();
     }
 
+    /**
+     * check list size.
+     * @param oldItemPosition the position of the item in the oldList.
+     * @param newItemPosition the position of the item in the newList.
+     * @return true if size is not same and false if size is same.
+     */
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-        return oldTaskServiceList.get(oldItemPosition).isCompleted() == newTaskServiceList.get(newItemPosition).isCompleted();
+        //return oldTaskServiceList.get(oldItemPosition).isCompleted() == newTaskServiceList.get(newItemPosition).isCompleted();
+        return getOldListSize() != getNewListSize();
     }
 
     @Override
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-        return oldTaskServiceList.get(oldItemPosition).equals(newTaskServiceList.get(newItemPosition));
+        //return oldTaskServiceList.get(oldItemPosition).equals(newTaskServiceList.get(newItemPosition));
+        return false;
     }
 }

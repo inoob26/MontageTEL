@@ -1,6 +1,7 @@
 package com.tel.inoob.montagtel.View;
 
 import android.app.Dialog;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,18 +26,20 @@ public class RVServiceAdvansAdapter extends RecyclerView.Adapter<RVServiceAdvans
     private int taskId;
     //dialog need for close ServiceAdvansDialog
     private Dialog dialog;
+    private ServiceAdvanceClickForUpdateRecycleView serviceAdvanceClickForUpdateRecycleView;
 
-    public RVServiceAdvansAdapter(List<ServiceAdvans> list, Dialog dialog){
+    public RVServiceAdvansAdapter(List<ServiceAdvans> list, Dialog dialog, ServiceAdvanceClickForUpdateRecycleView serviceAdvanceClickForUpdateRecycleView){
         this.list = list;
         this.dialog = dialog;
+        this.serviceAdvanceClickForUpdateRecycleView = serviceAdvanceClickForUpdateRecycleView;
     }
 
     @Override
     public RVServiceAdvansAdapter.ServiceAdvansViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_service_advans,parent,false);
-        ServiceAdvansViewHolder serviceAdvansViewHolder = new ServiceAdvansViewHolder(view);
+        //ServiceAdvansViewHolder serviceAdvansViewHolder = new ServiceAdvansViewHolder(view);
 
-        return serviceAdvansViewHolder;
+        return new ServiceAdvansViewHolder(view);
     }
 
     @Override
@@ -50,6 +53,7 @@ public class RVServiceAdvansAdapter extends RecyclerView.Adapter<RVServiceAdvans
         holder.serviceTemplateId = list.get(position).getId();
 
         holder.dialog = dialog;
+        holder.serviceAdvanceClickForUpdateRecycleView = this.serviceAdvanceClickForUpdateRecycleView;
     }
 
     @Override
@@ -87,7 +91,7 @@ public class RVServiceAdvansAdapter extends RecyclerView.Adapter<RVServiceAdvans
         private int quantity;
         private int tarifId;
         private Dialog dialog;
-
+        private ServiceAdvanceClickForUpdateRecycleView serviceAdvanceClickForUpdateRecycleView;
 
         public ServiceAdvansViewHolder(final View itemView){
             super(itemView);
@@ -104,13 +108,18 @@ public class RVServiceAdvansAdapter extends RecyclerView.Adapter<RVServiceAdvans
                                                 "{\"ServiceTemplateId\":" + serviceTemplateId + "," +
                                                 "\"TarifId\":" + tarifId +"," +
                                                 "\"Quantity\": " + quantity+ "} ] }}");
-                    Log.i("RVServiceAdvansAdapter","json: " + stringBuilder.toString());
+                    //Log.i("RVServiceAdvansAdapter","json: " + stringBuilder.toString());
 
                     //send json to server
                     NewWebClient client = new NewWebClient();
                     client.addServiceToTask(stringBuilder.toString());
+
+
                     //close ServiceAdvansDialog
                     dialog.dismiss();
+
+                    //rerender recycle view for detailTicketActivity
+                    serviceAdvanceClickForUpdateRecycleView.reRenderRecycleView();
                 }
             });
         }

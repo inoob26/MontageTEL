@@ -1,6 +1,8 @@
 package com.tel.inoob.montagtel.Controller;
 
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +13,12 @@ import com.tel.inoob.montagtel.Model.TaskService;
 import com.tel.inoob.montagtel.R;
 import com.tel.inoob.montagtel.View.RecyclerOnItemClickListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Adapter for TaskServiceList RecycleView.
+ *
  * @author inoob
  * @since 0.1
  */
@@ -28,15 +33,15 @@ public class RVTaskServiceListAdapter extends RecyclerView.Adapter<RVTaskService
 
     /**
      *
-     * @param taskServiceList
+     * @param taskServiceList list.
      */
     public void setTaskServiceList(List<TaskService> taskServiceList) {
         this.taskServiceList = taskServiceList;
     }
 
     /**
-     *
-     * @param itemClickListener
+     * setter.
+     * @param itemClickListener click listener object.
      */
     public void setItemClickListener(RecyclerOnItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
@@ -45,13 +50,13 @@ public class RVTaskServiceListAdapter extends RecyclerView.Adapter<RVTaskService
     @Override
     public TaskServiceHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_task_service_list,parent,false);
-        TaskServiceHolder taskServiceHolder = new TaskServiceHolder(view);
+        //TaskServiceHolder taskServiceHolder = new TaskServiceHolder(view);
 
-        return taskServiceHolder;
+        return new TaskServiceHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(TaskServiceHolder holder, int position) {
+    public void onBindViewHolder(TaskServiceHolder holder,int position) {
         holder.task_service_name.setText(taskServiceList.get(position).getServiceName());
         holder.task_service_flag.setChecked(taskServiceList.get(position).isCompleted());
         holder.position = position;
@@ -81,12 +86,26 @@ public class RVTaskServiceListAdapter extends RecyclerView.Adapter<RVTaskService
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked){
-                        itemClickListener.onItemClickRVTaskServiceListAdapter(position,isChecked);
+                        itemClickListener.onItemClickRVTaskServiceListAdapter(position,true);
                     } else {
-                        itemClickListener.onItemClickRVTaskServiceListAdapter(position,isChecked);
+                        itemClickListener.onItemClickRVTaskServiceListAdapter(position,false);
                     }
                 }
             });
         }
+    }
+
+    /**
+     * Update recycle view.
+     * @param list of TaskService.
+     */
+    public void updateList(List<TaskService> list){
+        final TaskServiceDiffCallback diffCallback = new TaskServiceDiffCallback(this.taskServiceList,list);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
+
+        this.taskServiceList.clear();
+        this.taskServiceList.addAll(list);
+
+        diffResult.dispatchUpdatesTo(this);
     }
 }

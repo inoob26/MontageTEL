@@ -18,7 +18,9 @@ import com.tel.inoob.montagtel.R
 import com.tel.inoob.montagtel.Tools.Deserialize
 import com.tel.inoob.montagtel.Tools.NewWebClient
 
-class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
+class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener,ServiceAdvanceClickForUpdateRecycleView{
+
+
     private var controller: TicketController? = null
     private var clientFio: TextView? = null
     private var clientPhone: TextView? = null
@@ -27,6 +29,7 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
     private var client_id: TextView? = null
     private var start_time: TextView? = null
     private var recyclerView_task_service_list: RecyclerView? = null
+    private var adapterTaskServiceList : RVTaskServiceListAdapter? = null
     private var recycleView_consume: RecyclerView? = null
 
 
@@ -66,6 +69,7 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
          */
         task_detail_btn_add_task_service!!.setOnClickListener {
             val serviceAdvansDialog = ServiceAdvansDialog()
+            serviceAdvansDialog!!.setDetailTicketActivity(this)
             val args  = Bundle()
             args.putInt("user_id",user_id)
             args.putInt("task_id",task_id_number)
@@ -121,7 +125,9 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
         clientFio!!.text = extras.get("clientFio") as String
         clientPhone!!.text = extras.get("clientPhone") as String
         taskAddress!!.text = extras.get("taskAddress") as String
-        task_id!!.text = "№" + extras.get("task_id").toString()
+
+        val taskIdPlaceHolder : String = "№" + extras.get("task_id").toString()
+        task_id!!.text = taskIdPlaceHolder
         client_id!!.text = extras.get("client_id").toString()
         start_time!!.text = extras.get("task_detail_time").toString()
         user_id = extras.get("user_id") as Int
@@ -152,13 +158,16 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
             }
         }
 
-        task_detail_lbl_for_device_sum!!.text = "" + device_sum.toInt() + " руб"
-        task_detail_lbl_pay_total_sum!!.text = "" + total_sum.toInt() + " руб"
+        val placeHolderForDeviceSum : String = "" + device_sum.toInt() + " руб"
+        val placeHolderPayTotalSum : String = "" + total_sum.toInt() + " руб"
 
-        var adapter: RVTaskServiceListAdapter = RVTaskServiceListAdapter()
-        adapter.setTaskServiceList(list)
-        adapter.setItemClickListener(this)
-        recyclerView_task_service_list!!.adapter = adapter
+        task_detail_lbl_for_device_sum!!.text = placeHolderForDeviceSum
+        task_detail_lbl_pay_total_sum!!.text = placeHolderPayTotalSum
+
+        adapterTaskServiceList = RVTaskServiceListAdapter()
+        adapterTaskServiceList!!.setTaskServiceList(list)
+        adapterTaskServiceList!!.setItemClickListener(this)
+        recyclerView_task_service_list!!.adapter = adapterTaskServiceList
     }
 
     private fun initConsumeRecycleView(){
@@ -195,6 +204,15 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener{
      */
     override fun onItemClickRVTaskServiceListAdapter(position: Int, isCompleted: Boolean) {
         list!!.get(position).isCompleted = isCompleted
+    }
+
+    /**
+     * Check recycle view updates.
+     * If recycle view was change it re render list.
+     */
+    override fun reRenderRecycleView() {
+        val newList: MutableList<TaskService> = controller!!.getListOfTaskService(task_id_number, applicationContext)
+        adapterTaskServiceList!!.updateList(newList)
     }
 
     companion object {

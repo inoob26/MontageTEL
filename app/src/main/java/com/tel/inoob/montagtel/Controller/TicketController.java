@@ -40,7 +40,7 @@ public class TicketController {
         Date today = new Date();
 
         try {
-            today = dateFormat.parse("2017.06.13");
+            today = dateFormat.parse("2017.07.01");
         } catch (ParseException e) {
             e.printStackTrace();
         }
