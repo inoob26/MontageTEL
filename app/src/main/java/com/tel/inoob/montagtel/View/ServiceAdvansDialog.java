@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageButton;
 import com.tel.inoob.montagtel.R;
 import com.tel.inoob.montagtel.Tools.Deserialize;
@@ -55,6 +56,9 @@ public class ServiceAdvansDialog extends DialogFragment {
                 getDialog().dismiss();
             }
         });
+
+        //turn off dialog title
+        getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         Bundle args = getArguments();
         recycle_view_service_advans = (RecyclerView) view.findViewById(R.id.recycle_view_service_advans);
