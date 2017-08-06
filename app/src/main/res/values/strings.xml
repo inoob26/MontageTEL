@@ -10,7 +10,7 @@
 
     <string name="date_picker">"Выбрать дату"</string>
     <!-- CardView Ticket -->
-    <string name="recycle_view_date_lbl">"Заявки на 13.06"</string>
+    <string name="recycle_view_date_lbl">"Заявки на 1.08"</string>
     <string name="card_task_id">"№25134"</string>
     <string name="card_client_id">"ID 41886"</string>
     <string name="card_task_start_id">"12:00"</string>
@@ -18,6 +18,8 @@
     <string name="card_clientPhone">"+7"</string>
     <string name="card_taskAddress">"Address"</string>
     <string name="card_serviceInfo">"ServiceInfo"</string>
+    <!-- calendar Dialog  -->
+    <string name="dialog_calendar_task_list_title">"Выберете дату"</string>
     <!-- Detail Ticket -->
     <string name="task_detail_task">"Задачи"</string>
     <string name="task_detail_service_task">"Услуги и задачи"</string>

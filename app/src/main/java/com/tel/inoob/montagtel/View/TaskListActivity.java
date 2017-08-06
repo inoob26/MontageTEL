@@ -22,6 +22,8 @@ public class TaskListActivity extends AppCompatActivity
     private static final int LAYOUT = R.layout.activity_task_list;
 
     private int user_id;
+    private String dateDDMM;
+    private String dateMMDD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,28 +32,36 @@ public class TaskListActivity extends AppCompatActivity
 
         Bundle extras = getIntent().getExtras();
         user_id = (int) extras.get("userId");
+        dateDDMM = extras.getString("dateDDMM");
+        dateMMDD = extras.getString("dateMMDD");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("MotageTEL");
+        toolbar.setTitle("MontageTEL");
         setSupportActionBar(toolbar);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        reloadGF();
+    }
+
+    private void reloadGF(){
         GraphicFragment graphicFragment = new GraphicFragment();
         Bundle args = new Bundle();
         args.putInt("param1",user_id);
+        args.putCharSequence("dateDDMM", dateDDMM);
+        args.putCharSequence("dateMMDD", dateMMDD);
         graphicFragment.setArguments(args);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_task_list,graphicFragment).commit();
-
     }
 
     @Override
@@ -93,10 +103,11 @@ public class TaskListActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.graphic) {
-            //Toast.makeText(this,"GRAPHIC",Toast.LENGTH_SHORT).show();
             GraphicFragment graphicFragment = new GraphicFragment();
             Bundle args = new Bundle();
             args.putInt("param1",user_id);
+            args.putCharSequence("dateDDMM", dateDDMM);
+            args.putCharSequence("dateMMDD", dateMMDD);
             graphicFragment.setArguments(args);
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_task_list,graphicFragment).commit();
@@ -105,11 +116,7 @@ public class TaskListActivity extends AppCompatActivity
             CalendarFragment calendarFragment = new CalendarFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_task_list,calendarFragment).commit();
-            //Toast.makeText(this,"CALENDAR",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.contacts) {
-            /*
-            Intent contact = new Intent(TaskListActivity.this,ContactActivity.class);
-            startActivity(contact);*/
             ContactFragment contactFragment = new ContactFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_task_list,contactFragment).commit();

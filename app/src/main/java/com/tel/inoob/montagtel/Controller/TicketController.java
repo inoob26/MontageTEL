@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import com.tel.inoob.montagtel.MainScreen;
 import com.tel.inoob.montagtel.Model.Error;
@@ -32,7 +33,7 @@ public class TicketController {
      * @param context context for Alarm dialog or
      * @return list of Task
      */
-    public List<Task> getListOfTask(final int user_id, Context context) {
+    public List<Task> getListOfTask(final String date,final int user_id, Context context) {
         List<Task> listOfTask = new LinkedList<>();
 
         Deserialize deserialize = new Deserialize();
@@ -40,7 +41,7 @@ public class TicketController {
         Date today = new Date();
 
         try {
-            today = dateFormat.parse("2017.07.01");
+            today = dateFormat.parse("2017." + date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -94,7 +95,6 @@ public class TicketController {
         builder.setMessage(msg)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // FIRE ZE MISSILES!
                         dialog.dismiss();
                     }
                 });

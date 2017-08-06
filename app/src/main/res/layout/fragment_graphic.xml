@@ -28,7 +28,8 @@
                           android:layout_centerVertical="true"
                           android:layout_alignParentStart="true"/>
 
-                <ImageButton android:layout_width="wrap_content"
+                <ImageButton android:id="@+id/graphic_calendar_btn"
+                        android:layout_width="wrap_content"
                              android:background="@null"
                              android:src="@mipmap/ic_calendar_light"
                              android:layout_height="wrap_content"

@@ -19,6 +19,10 @@ import com.tel.inoob.montagtel.View.TaskListActivity;
 import com.tel.inoob.montagtel.Tools.Deserialize;
 import com.tel.inoob.montagtel.Model.Error;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 /**
  * This is Login Screen
@@ -41,27 +45,18 @@ public class MainScreen extends AppCompatActivity {
      */
     private static final int LAYOUT = R.layout.activity_main_screen;
 
-
-    /**
-     * This method initialize properties and events.
-     */
-    private void init(){
-
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(LAYOUT);
         login = (EditText)findViewById(R.id.login);
         password = (EditText)findViewById(R.id.password);
         errorMsg = (TextView)findViewById(R.id.wrongData);
+
         sign_in = (Button)findViewById(R.id.Sign_in);
         sign_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                 * show progress dialog when login.
-                 */
-                ProgressDialog pd = new ProgressDialog(MainScreen.this);
-                pd.setTitle("Connect to Server");
-                pd.setMessage("Loading...");
-                pd.show();
-
 
                 final Intent ticket = new Intent(MainScreen.this, TaskListActivity.class);
                 Deserialize deserialize = new Deserialize();
@@ -74,22 +69,19 @@ public class MainScreen extends AppCompatActivity {
                     errorMsg.setText(error.getErrorMsg());
                     errorMsg.setVisibility(View.VISIBLE);
                 } else {
+
+                    DateFormat dateFormat1 = new SimpleDateFormat("dd.MM");
+                    DateFormat dateFormat2 = new SimpleDateFormat("MM.dd");
+                    final Date today = new Date();
+
                     int result = deserialize.deserializeUser(login.getText().toString(), password.getText().toString());
                     ticket.putExtra("userId",result);
+                    ticket.putExtra("dateDDMM", dateFormat1.format(today));
+                    ticket.putExtra("dateMMDD", dateFormat2.format(today));
                     startActivity(ticket);
                 }
-                pd.cancel();
             }
         });
-
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(LAYOUT);
-        init();
-
     }
 
     @Override
