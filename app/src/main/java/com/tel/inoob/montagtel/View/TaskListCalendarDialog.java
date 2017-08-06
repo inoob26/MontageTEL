@@ -39,6 +39,7 @@ public class TaskListCalendarDialog extends DialogFragment {
                 Intent ticket = new Intent(getActivity().getApplicationContext(),TaskListActivity.class);
 
                 ticket.putExtra("userId",bundle.getInt("param1"));
+                ticket.putExtra("userName",bundle.getString("userName"));
                 ticket.putExtra("dateDDMM", ""+ dayOfMonth + "." + m);
                 ticket.putExtra("dateMMDD", ""+m+"."+dayOfMonth);
                 getDialog().dismiss();

@@ -74,8 +74,11 @@ public class MainScreen extends AppCompatActivity {
                     DateFormat dateFormat2 = new SimpleDateFormat("MM.dd");
                     final Date today = new Date();
 
-                    int result = deserialize.deserializeUser(login.getText().toString(), password.getText().toString());
-                    ticket.putExtra("userId",result);
+                    User user = deserialize.deserializeUser(login.getText().toString(), password.getText().toString());
+
+                    //int result = deserialize.deserializeUser(login.getText().toString(), password.getText().toString());
+                    ticket.putExtra("userId",user.getId());
+                    ticket.putExtra("userName",user.getName());
                     ticket.putExtra("dateDDMM", dateFormat1.format(today));
                     ticket.putExtra("dateMMDD", dateFormat2.format(today));
                     startActivity(ticket);

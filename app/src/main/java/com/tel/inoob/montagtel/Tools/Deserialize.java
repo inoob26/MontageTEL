@@ -70,9 +70,9 @@ public class Deserialize {
     /**
      * Deserialize User object from webService.
      *
-     * @return user id.
+     * @return user.
      */
-    public int deserializeUser(final String login, final  String password) {
+    public User deserializeUser(final String login, final  String password) {
 
         String json = getJson(D_LOGIN_PASSWORD_PATH + login + "&password=" + password);
 
@@ -81,9 +81,7 @@ public class Deserialize {
                 .registerTypeAdapter(User.class, new UserDeserializer())
                 .create();
 
-        User user = gson.fromJson(json, User.class);
-
-        return user.getId();
+        return gson.fromJson(json, User.class);
     }
 
     /**
@@ -160,7 +158,7 @@ public class Deserialize {
         return list.getList();
     }
 
-    public String getJson(final String path){
+    private String getJson(final String path){
         NewWebClient webClient = new NewWebClient();
         return webClient.getDataFromUrl(path);
     }

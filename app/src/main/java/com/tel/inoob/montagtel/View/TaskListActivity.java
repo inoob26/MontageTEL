@@ -10,8 +10,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.tel.inoob.montagtel.MainScreen;
 import com.tel.inoob.montagtel.R;
@@ -22,8 +25,13 @@ public class TaskListActivity extends AppCompatActivity
     private static final int LAYOUT = R.layout.activity_task_list;
 
     private int user_id;
+    private String user_name;
     private String dateDDMM;
     private String dateMMDD;
+
+    //Name and Second name on navigation
+    private TextView userSecondFirstNavHeader;
+    private TextView userSecondFirst;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +40,7 @@ public class TaskListActivity extends AppCompatActivity
 
         Bundle extras = getIntent().getExtras();
         user_id = (int) extras.get("userId");
+        user_name = extras.getString("userName");
         dateDDMM = extras.getString("dateDDMM");
         dateMMDD = extras.getString("dateMMDD");
 
@@ -48,6 +57,9 @@ public class TaskListActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        userSecondFirst = (TextView) headerView.findViewById(R.id.userSecondFirst);
+        userSecondFirst.setText(user_name);
         navigationView.setNavigationItemSelectedListener(this);
 
         reloadGF();
@@ -57,6 +69,7 @@ public class TaskListActivity extends AppCompatActivity
         GraphicFragment graphicFragment = new GraphicFragment();
         Bundle args = new Bundle();
         args.putInt("param1",user_id);
+        args.putCharSequence("userName",user_name);
         args.putCharSequence("dateDDMM", dateDDMM);
         args.putCharSequence("dateMMDD", dateMMDD);
         graphicFragment.setArguments(args);
@@ -106,16 +119,13 @@ public class TaskListActivity extends AppCompatActivity
             GraphicFragment graphicFragment = new GraphicFragment();
             Bundle args = new Bundle();
             args.putInt("param1",user_id);
+            args.putCharSequence("userName",user_name);
             args.putCharSequence("dateDDMM", dateDDMM);
             args.putCharSequence("dateMMDD", dateMMDD);
             graphicFragment.setArguments(args);
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_task_list,graphicFragment).commit();
 
-        } else if (id == R.id.calendar) {
-            CalendarFragment calendarFragment = new CalendarFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_task_list,calendarFragment).commit();
         } else if (id == R.id.contacts) {
             ContactFragment contactFragment = new ContactFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
