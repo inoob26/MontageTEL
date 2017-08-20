@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:paddingBottom="3dp">
-        <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        <FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
                       android:layout_height="wrap_content"
                       android:layout_width="match_parent">
             <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
@@ -66,6 +66,7 @@
                                                         android:id="@+id/recycler_consume"
                                                         android:layout_marginBottom="16dp"
                 />
+                <!--
                 <Button
                         android:text="@string/consume_add_btn"
                         android:background="@color/colorTaskGreen"
@@ -79,9 +80,9 @@
                         app:layout_constraintLeft_toLeftOf="parent"
                         android:layout_marginEnd="16dp"
                         app:layout_constraintRight_toRightOf="parent"/>
-
+                -->
             </android.support.constraint.ConstraintLayout>
-        </LinearLayout>
+        </FrameLayout>
     </ScrollView>
 </android.support.design.widget.CoordinatorLayout>
 

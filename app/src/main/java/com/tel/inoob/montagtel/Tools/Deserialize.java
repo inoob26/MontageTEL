@@ -20,12 +20,21 @@ public class Deserialize {
     /**
      * The Constant PATH's.
      */
+    /* Local IP
     private final static String D_LOGIN_PASSWORD_PATH = "http://10.192.25.4:9190/mobile/login?login=";
     public final static String D_TASK_PATH = "http://10.192.25.4:9190/mobile/task?id=";
     private final static String D_TASK_SERVICE_PATH = "http://10.192.25.4:9190/mobile/ServiceByTask?id=";
     private final static String D_SERVICE_ADVANS_PATH = "http://10.192.25.4:9190/mobile/ServiceAdvans?userid=";
 
     private static final String GET_CONSUMABLES_BY_TASK = "http://10.192.25.4:9190/mobile/ConsumablesByTask?id=";
+    */
+
+    //Global IP
+    private final static String D_LOGIN_PASSWORD_PATH = "http://87.249.19.150:9190/mobile/login?login=";
+    private final static String D_TASK_PATH = "http://87.249.19.150:9190/mobile/task?id=";
+    private final static String D_TASK_SERVICE_PATH = "http://87.249.19.150:9190/mobile/ServiceByTask?id=";
+    private final static String D_SERVICE_ADVANS_PATH = "http://87.249.19.150:9190/mobile/ServiceAdvans?userid=";
+    private static final String GET_CONSUMABLES_BY_TASK = "http://87.249.19.150:9190/mobile/ConsumablesByTask?id=";
 
     public Error deserializeLoginPassword(final String login, final  String password) {
         String json = getJson(D_LOGIN_PASSWORD_PATH + login + "&password=" + password);

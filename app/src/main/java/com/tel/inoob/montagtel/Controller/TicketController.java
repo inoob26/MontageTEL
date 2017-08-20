@@ -47,6 +47,7 @@ public class TicketController {
         }
 
         Error error = deserialize.deserializeErrorForTask(user_id, dateFormat.format(today));
+        Log.i("TicketController","getListOfTask: Error " + error.getErrorMsg() );
 
         checkErrorLoginCode(error,context);
 

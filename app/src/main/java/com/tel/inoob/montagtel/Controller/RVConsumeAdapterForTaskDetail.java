@@ -1,5 +1,6 @@
 package com.tel.inoob.montagtel.Controller;
 
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.tel.inoob.montagtel.Model.ConsumableByTask;
 import com.tel.inoob.montagtel.R;
+import com.tel.inoob.montagtel.View.ConsumableOnClickUpdateListener;
 
 import java.util.List;
 
@@ -16,6 +18,8 @@ import java.util.List;
  */
 public class RVConsumeAdapterForTaskDetail extends RecyclerView.Adapter<RVConsumeAdapterForTaskDetail.ConsumeHolderForTaskDetail>{
     private List<ConsumableByTask> list;
+    private ConsumableOnClickUpdateListener listener;
+
 
     public RVConsumeAdapterForTaskDetail(List<ConsumableByTask> list){
         this.list = list;
@@ -40,6 +44,10 @@ public class RVConsumeAdapterForTaskDetail extends RecyclerView.Adapter<RVConsum
         return list.size();
     }
 
+    public void setListener(ConsumableOnClickUpdateListener listener) {
+        this.listener = listener;
+    }
+
     public class ConsumeHolderForTaskDetail extends RecyclerView.ViewHolder{
 
         private TextView consume_name;
@@ -50,5 +58,15 @@ public class RVConsumeAdapterForTaskDetail extends RecyclerView.Adapter<RVConsum
             consume_name = (TextView) itemView.findViewById(R.id.task_detail_consume_name_lbl);
             consume_count = (TextView) itemView.findViewById(R.id.task_detail_consume_count);
         }
+    }
+
+    public void updateList(List<ConsumableByTask> newList){
+        final ConsumableDiffCallBack consumableDiffCallBack = new ConsumableDiffCallBack(this.list,newList);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(consumableDiffCallBack);
+
+        this.list.clear();
+        this.list.addAll(newList);
+
+        diffResult.dispatchUpdatesTo(this);
     }
 }

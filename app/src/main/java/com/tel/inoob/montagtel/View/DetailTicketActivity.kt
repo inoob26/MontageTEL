@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import com.tel.inoob.montagtel.Controller.ConsumableByTaskController
 import com.tel.inoob.montagtel.Controller.RVConsumeAdapterForTaskDetail
 import com.tel.inoob.montagtel.Controller.RVTaskServiceListAdapter
 import com.tel.inoob.montagtel.Controller.TicketController
@@ -18,7 +19,8 @@ import com.tel.inoob.montagtel.R
 import com.tel.inoob.montagtel.Tools.Deserialize
 import com.tel.inoob.montagtel.Tools.NewWebClient
 
-class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener,ServiceAdvanceClickForUpdateRecycleView{
+class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener,ServiceAdvanceClickForUpdateRecycleView,ConsumableOnClickUpdateListener {
+
 
 
     private var controller: TicketController? = null
@@ -50,6 +52,8 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener,S
     private var list : MutableList<TaskService>? = null
 
     private var listOfConsumable : MutableList<ConsumableByTask>? = null
+    private var consumeAdapter: RVConsumeAdapterForTaskDetail? = null
+    private var deserialize: Deserialize? = null
 
     private fun onLoad() {
 
@@ -81,12 +85,15 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener,S
         task_detail_add_consumable_by_task = findViewById(R.id.task_detail_add_consumable_by_task) as Button
 
         task_detail_add_consumable_by_task!!.setOnClickListener {
-            val consumableActivity: Intent = Intent(applicationContext,ConsumablesByTaskActivity::class.java)
-            //consumableActivity.putExtra("userId",user_id)
-            consumableActivity.putExtra("taskId",task_id_number)
-            consumableActivity.putExtra("client_id",extras.get("client_id").toString())
-            consumableActivity.putExtra("task_detail_time", extras.get("task_detail_time").toString())
-            startActivity(consumableActivity)
+            val consumableController: ConsumableByTaskController = ConsumableByTaskController.getINSTANCE()
+
+            consumableController.setContext(applicationContext)
+            consumableController.setTask_id(task_id_number)
+            consumableController.setClient_id(extras.get("client_id") as Int)
+            consumableController.setTask_detail_time(extras.get("task_detail_time").toString())
+            consumableController.updateListener = this
+
+            consumableController.showActivity()
         }
 
         task_detail_submit = findViewById(R.id.task_detail_submit) as Button
@@ -174,9 +181,10 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener,S
         recycleView_consume = findViewById(R.id.recycle_view_consumable_by_task) as RecyclerView
         recycleView_consume!!.layoutManager = LinearLayoutManager(this)
 
-        val deserialize: Deserialize = Deserialize()
-        listOfConsumable = deserialize.deserializeConsumableByTask(task_id_number)
-        val consumeAdapter: RVConsumeAdapterForTaskDetail = RVConsumeAdapterForTaskDetail(listOfConsumable)
+        deserialize = Deserialize()
+        listOfConsumable = this!!.deserialize!!.deserializeConsumableByTask(task_id_number)
+        this.consumeAdapter = RVConsumeAdapterForTaskDetail(listOfConsumable)
+        this.consumeAdapter!!.setListener(this)
         recycleView_consume!!.adapter = consumeAdapter
     }
 
@@ -187,7 +195,6 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener,S
         initListeners()
         initConsumeRecycleView()
     }
-
 
     private fun initListeners() {
         /**
@@ -213,6 +220,11 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener,S
     override fun reRenderRecycleView() {
         val newList: MutableList<TaskService> = controller!!.getListOfTaskService(task_id_number, applicationContext)
         adapterTaskServiceList!!.updateList(newList)
+    }
+
+    override fun sendDataUpdateAndCloseFrame() {
+        val newListOfConsumable = this!!.deserialize!!.deserializeConsumableByTask(task_id_number)
+        consumeAdapter!!.updateList(newListOfConsumable)
     }
 
     companion object {

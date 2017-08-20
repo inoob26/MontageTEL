@@ -19,8 +19,8 @@ public class NewWebClient {
      */
     private static final String TAG = NewWebClient.class.getSimpleName();
 
-    //http://10.192.25.4:9190/mobile/CloseTask(int taskId, [ {  Id, IsBreak, IsCompleted} ])
-    private static final String CLOSE_TASK_PATH = "http://10.192.25.4:9190/mobile/CloseTask";
+    //http://87.249.19.150:9190/mobile/CloseTask(int taskId, [ {  Id, IsBreak, IsCompleted} ])
+    private static final String CLOSE_TASK_PATH = "http://87.249.19.150:9190/mobile/CloseTask";
     /**
      * {"model":{"TaskId":26647,
      * "Services":[
@@ -31,20 +31,20 @@ public class NewWebClient {
      * ]}}
 
      */
-    private static final String ADD_ADDITIONAL_TASK = "http://10.192.25.4:9190/mobile/AddServiceToTask";
+    private static final String ADD_ADDITIONAL_TASK = "http://87.249.19.150:9190/mobile/AddServiceToTask";
 
 
     /**
      * get data for ConsumablesByTask
      */
-    private static final String GET_CONSUMABLES_BY_TASK = "http://10.192.25.4:9190/mobile/ConsumablesByTask?id=";
-    //http://10.192.25.4:9190/mobile/ConsumablesByTask?id=830
+    private static final String GET_CONSUMABLES_BY_TASK = "http://87.249.19.150:9190/mobile/ConsumablesByTask?id=";
+    //http://87.249.19.150:9190/mobile/ConsumablesByTask?id=830
 
 
     /**
      * send data to server for AddConsumablesToTask
      */
-    private static final String ADD_CONSUMABLES_TO_TASK_PATH = "http://10.192.25.4:9190/mobile/AddConsumablesToTask";
+    private static final String ADD_CONSUMABLES_TO_TASK_PATH = "http://87.249.19.150:9190/mobile/AddConsumablesToTask";
 
     /**
      * media type.
