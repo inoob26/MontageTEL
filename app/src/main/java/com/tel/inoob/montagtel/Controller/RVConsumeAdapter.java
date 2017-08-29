@@ -2,7 +2,6 @@ package com.tel.inoob.montagtel.Controller;
 
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,8 @@ import com.tel.inoob.montagtel.Tools.NewWebClient;
 import com.tel.inoob.montagtel.View.ConsumableOnClickUpdateListener;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author inoob
@@ -120,6 +121,10 @@ public class RVConsumeAdapter extends RecyclerView.Adapter<RVConsumeAdapter.Cons
             addQuality = (EditText) itemView.findViewById(R.id.edit_quality);
             addConsumeBtn = (ImageButton) itemView.findViewById(R.id.add_cons_btn);
 
+            String regex = "^[1-9]+$";
+            final Pattern pattern = Pattern.compile(regex);
+
+
             /**
              * add/change data and send it to server.
              * after close ConsumablesByTaskActivity.
@@ -127,24 +132,33 @@ public class RVConsumeAdapter extends RecyclerView.Adapter<RVConsumeAdapter.Cons
             addConsumeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*
-                    {"model":{"TaskId":26647,"Consumables":[{"ID":3,"Quantity":10}]}} */
+                    /**
+                     * validate data.
+                     * pattern ^[1-9]+$.
+                     */
+                    Matcher matcher = pattern.matcher(addQuality.getText());
+                    if (!matcher.find()){
+                        addQuality.setError("неверный формат ввода. Необходимо вводить только цифры от 1 и больше");
+                    } else {
+                        /*
+                        {"model":{"TaskId":26647,"Consumables":[{"ID":3,"Quantity":10}]}} */
 
-                    StringBuilder builder = new StringBuilder();
+                        StringBuilder builder = new StringBuilder();
 
-                    builder.append("{ \"model\": { \"TaskId\": " + taskId
-                            + ", \"Consumables\": [ { \"ID\" : " + id +
-                              ", \"Quantity\" : " + addQuality.getText() + " } ] }}");
+                        builder.append("{ \"model\": { \"TaskId\": " + taskId
+                                + ", \"Consumables\": [ { \"ID\" : " + id +
+                                  ", \"Quantity\" : " + addQuality.getText() + " } ] }}");
 
-                    Log.i("ConsumeHolder", "json: " + builder.toString());
+                        //Log.i("ConsumeHolder", "json: " + builder.toString());
 
-                    NewWebClient client = new NewWebClient();
-                    client.addConsumablesToTask(builder.toString());
+                        NewWebClient client = new NewWebClient();
+                        client.addConsumablesToTask(builder.toString());
 
-                    closeListener.sendDataUpdateAndCloseFrame();
-                    ConsumableByTaskController consumableByTaskController = ConsumableByTaskController.getINSTANCE();
-                    ConsumableOnClickUpdateListener update = consumableByTaskController.getUpdateListener();
-                    update.sendDataUpdateAndCloseFrame();
+                        closeListener.sendDataUpdateAndCloseFrame();
+                        ConsumableByTaskController consumableByTaskController = ConsumableByTaskController.getINSTANCE();
+                        ConsumableOnClickUpdateListener update = consumableByTaskController.getUpdateListener();
+                        update.sendDataUpdateAndCloseFrame();
+                    }
                 }
             });
         }
