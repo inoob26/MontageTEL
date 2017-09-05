@@ -2,6 +2,7 @@ package com.tel.inoob.montagtel.Controller;
 
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import com.tel.inoob.montagtel.R;
 import com.tel.inoob.montagtel.View.ConsumableOnClickUpdateListener;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author inoob
@@ -19,7 +21,6 @@ import java.util.List;
 public class RVConsumeAdapterForTaskDetail extends RecyclerView.Adapter<RVConsumeAdapterForTaskDetail.ConsumeHolderForTaskDetail>{
     private List<ConsumableByTask> list;
     private ConsumableOnClickUpdateListener listener;
-
 
     public RVConsumeAdapterForTaskDetail(List<ConsumableByTask> list){
         this.list = list;
@@ -60,12 +61,12 @@ public class RVConsumeAdapterForTaskDetail extends RecyclerView.Adapter<RVConsum
         }
     }
 
-    public void updateList(List<ConsumableByTask> newList){
-        final ConsumableDiffCallBack consumableDiffCallBack = new ConsumableDiffCallBack(this.list,newList);
+    public void updateList(List<ConsumableByTask> list){
+        final ConsumableDiffCallBack consumableDiffCallBack = new ConsumableDiffCallBack(this.list,list);
         final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(consumableDiffCallBack);
 
         this.list.clear();
-        this.list.addAll(newList);
+        this.list.addAll(list);
 
         diffResult.dispatchUpdatesTo(this);
     }

@@ -182,10 +182,27 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener,S
         recycleView_consume!!.layoutManager = LinearLayoutManager(this)
 
         deserialize = Deserialize()
-        listOfConsumable = this!!.deserialize!!.deserializeConsumableByTask(task_id_number)
-        this.consumeAdapter = RVConsumeAdapterForTaskDetail(listOfConsumable)
+        listOfConsumable = this.deserialize!!.deserializeConsumableByTask(task_id_number)
+
+        //I will need realize sort list without items with 0 quantity
+
+        //var sortedList : MutableList<ConsumableByTask> = sortListOfConsume((listOfConsumable as MutableList<ConsumableByTask>?)!!)
+
+        this.consumeAdapter = RVConsumeAdapterForTaskDetail(sortListOfConsume(listOfConsumable))
         this.consumeAdapter!!.setListener(this)
         recycleView_consume!!.adapter = consumeAdapter
+    }
+
+    fun sortListOfConsume( list: MutableList<ConsumableByTask>?) : MutableList<ConsumableByTask>? {
+        var sortedList : MutableList<ConsumableByTask> = ArrayList<ConsumableByTask>()
+        for (cbt : ConsumableByTask in list.orEmpty()){
+            if (cbt.quantity != 0 ){
+                //Log.i("DetailTicket","sortListOfConsume: " + cbt!!.name + " deleted")
+                //list!!.remove(cbt)
+                sortedList!!.add(cbt)
+            }
+        }
+        return sortedList
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -224,7 +241,7 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener,S
 
     override fun sendDataUpdateAndCloseFrame() {
         val newListOfConsumable = this!!.deserialize!!.deserializeConsumableByTask(task_id_number)
-        consumeAdapter!!.updateList(newListOfConsumable)
+        consumeAdapter!!.updateList(sortListOfConsume(newListOfConsumable))
     }
 
     companion object {

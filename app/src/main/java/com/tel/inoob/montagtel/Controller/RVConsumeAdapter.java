@@ -121,7 +121,7 @@ public class RVConsumeAdapter extends RecyclerView.Adapter<RVConsumeAdapter.Cons
             addQuality = (EditText) itemView.findViewById(R.id.edit_quality);
             addConsumeBtn = (ImageButton) itemView.findViewById(R.id.add_cons_btn);
 
-            String regex = "^[1-9]+$";
+            String regex = "^[0-9]+$";
             final Pattern pattern = Pattern.compile(regex);
 
 
@@ -134,7 +134,7 @@ public class RVConsumeAdapter extends RecyclerView.Adapter<RVConsumeAdapter.Cons
                 public void onClick(View v) {
                     /**
                      * validate data.
-                     * pattern ^[1-9]+$.
+                     * pattern ^[0-9]+$.
                      */
                     Matcher matcher = pattern.matcher(addQuality.getText());
                     if (!matcher.find()){
