@@ -6,8 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import com.tel.inoob.montagtel.Controller.ConsumableByTaskController
 import com.tel.inoob.montagtel.Controller.RVConsumeAdapterForTaskDetail
@@ -38,6 +38,7 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener,S
     /**
      * user id.
      */
+    private var task_detail_back_btn: ImageButton? = null
     private var user_id: Int = 0
     private var task_id_number: Int = 0
     private var task_detail_btn_add_task_service: Button? = null
@@ -67,6 +68,7 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener,S
         taskAddress = findViewById(R.id.ticket_detail_task_address) as TextView
         start_time = findViewById(R.id.task_detail_time) as TextView
         task_detail_btn_add_task_service = findViewById(R.id.task_detail_btn_add_task_service) as Button
+        task_detail_back_btn = findViewById(R.id.task_detail_back_btn) as ImageButton
 
         /**
          * open DialogFragment for adding additional task service.
@@ -121,6 +123,10 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener,S
             var client: NewWebClient = NewWebClient()
             client.closeTask(string.toString())
             //close this Activity
+            finish()
+        }
+
+        task_detail_back_btn!!.setOnClickListener {
             finish()
         }
 

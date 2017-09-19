@@ -40,7 +40,7 @@ public class TaskListCalendarDialog extends DialogFragment {
 
                 ticket.putExtra("userId",bundle.getInt("param1"));
                 ticket.putExtra("userName",bundle.getString("userName"));
-                ticket.putExtra("dateDDMM", ""+ dayOfMonth + "." + m);
+                ticket.putExtra("dateDDMM", ""+ dayOfMonth + ".0" + m);
                 ticket.putExtra("dateMMDD", ""+m+"."+dayOfMonth);
                 getDialog().dismiss();
                 startActivity(ticket);

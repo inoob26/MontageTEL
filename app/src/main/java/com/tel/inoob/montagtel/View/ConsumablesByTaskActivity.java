@@ -5,8 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.widget.Button;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.tel.inoob.montagtel.Controller.RVConsumeAdapter;
@@ -25,6 +25,7 @@ public class ConsumablesByTaskActivity extends AppCompatActivity implements Cons
     private static final int LAYOUT = R.layout.activity_consume_by_task;
 
     //Toolbar
+    private ImageButton consume_toolbar_back_btn;
     private TextView consume_toolbar_task_id;
     private TextView consume_toolbar_client_id;
     private TextView consume_toolbar_time;
@@ -57,11 +58,19 @@ public class ConsumablesByTaskActivity extends AppCompatActivity implements Cons
 
         Bundle extras = getIntent().getExtras();
         //Toolbar
+        consume_toolbar_back_btn = (ImageButton) findViewById(R.id.consume_toolbar_back_btn);
         consume_toolbar_task_id = (TextView) findViewById(R.id.consume_toolbar_task_id);
         consume_toolbar_client_id = (TextView) findViewById(R.id.consume_toolbar_client_id);
         consume_toolbar_time = (TextView) findViewById(R.id.consume_toolbar_time);
 
-        String placeholder = "#"+extras.get("taskId").toString();
+        consume_toolbar_back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        String placeholder = "№"+extras.get("taskId").toString();
 
         consume_toolbar_task_id.setText(placeholder);
         consume_toolbar_client_id.setText(extras.get("client_id").toString());
@@ -95,15 +104,5 @@ public class ConsumablesByTaskActivity extends AppCompatActivity implements Cons
         finish();
         Toast toast = Toast.makeText(getApplicationContext(),"Расходник был добавлени",Toast.LENGTH_SHORT);
         toast.show();
-
-        //List<ConsumableByTask> listOfConsumable = deserialize.deserializeConsumableByTask(task_id);
-
-        //Log.i("listOfConsumable", "quantity: " + listOfConsumable.get(0).getQuantity());
-
-        //adapter.setConsumableByTaskList(listOfConsumable);
-        //recyclerView.setAdapter(adapter);
-        //adapter.updateList(listOfConsumable);
-        //adapter.notifyDataSetChanged();
-
     }
 }
