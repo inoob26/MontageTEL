@@ -20,9 +20,6 @@ import com.tel.inoob.montagtel.Tools.Deserialize
 import com.tel.inoob.montagtel.Tools.NewWebClient
 
 class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener,ServiceAdvanceClickForUpdateRecycleView,ConsumableOnClickUpdateListener {
-
-
-
     private var controller: TicketController? = null
     private var clientFio: TextView? = null
     private var clientPhone: TextView? = null
@@ -33,7 +30,6 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener,S
     private var recyclerView_task_service_list: RecyclerView? = null
     private var adapterTaskServiceList : RVTaskServiceListAdapter? = null
     private var recycleView_consume: RecyclerView? = null
-
 
     /**
      * user id.
@@ -203,8 +199,6 @@ class DetailTicketActivity  : AppCompatActivity(), RecyclerOnItemClickListener,S
         var sortedList : MutableList<ConsumableByTask> = ArrayList<ConsumableByTask>()
         for (cbt : ConsumableByTask in list.orEmpty()){
             if (cbt.quantity != 0 ){
-                //Log.i("DetailTicket","sortListOfConsume: " + cbt!!.name + " deleted")
-                //list!!.remove(cbt)
                 sortedList!!.add(cbt)
             }
         }

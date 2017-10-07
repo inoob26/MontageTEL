@@ -40,8 +40,9 @@ public class TaskListCalendarDialog extends DialogFragment {
 
                 ticket.putExtra("userId",bundle.getInt("param1"));
                 ticket.putExtra("userName",bundle.getString("userName"));
-                ticket.putExtra("dateDDMM", ""+ dayOfMonth + ".0" + m);
-                ticket.putExtra("dateMMDD", ""+m+"."+dayOfMonth);
+                //ticket.putExtra("dateDDMM", ""+ dayOfMonth + ".0" + m);
+                ticket.putExtra("dateDDMM", "" + changeDay(dayOfMonth) + changeMonth(m));
+                ticket.putExtra("dateMMDD", "" + m + "." + dayOfMonth);
                 getDialog().dismiss();
                 startActivity(ticket);
             }
@@ -56,5 +57,33 @@ public class TaskListCalendarDialog extends DialogFragment {
         });
 
         return view;
+    }
+
+    /**
+     * Change type from int to string.
+     *
+     * @param month month
+     * @return format of string 01...09 or 10..12
+     */
+    private String changeMonth(int month){
+        if(month < 10){
+            return ".0" + month;
+        } else {
+            return "."+month;
+        }
+    }
+
+    /**
+     * Change type from int to string.
+     *
+     * @param day day of month.
+     * @return format of string 01...09 or 10..31
+     */
+    private String changeDay(int day){
+        if(day < 10){
+            return "0" + day;
+        } else {
+            return ""+day;
+        }
     }
 }
